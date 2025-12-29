@@ -1,0 +1,1652 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OceanVPN | Layanan VPN Premium Gratis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a73e8;
+            --primary-dark: #0d62d9;
+            --secondary: #00c853;
+            --dark: #202124;
+            --light: #f8f9fa;
+            --gray: #5f6368;
+            --light-gray: #e8eaed;
+            --accent: #34a853;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --border-radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f5f7fa;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 32px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 16px;
+            box-shadow: var(--shadow-light);
+            gap: 8px;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-success {
+            background-color: var(--secondary);
+        }
+
+        .btn-success:hover {
+            background-color: #00b248;
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: white;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 8px;
+            font-size: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 100px;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 30px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            background-color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            box-shadow: var(--shadow-light);
+            gap: 8px;
+        }
+
+        .badge i {
+            color: var(--secondary);
+        }
+
+        .hero-btns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Server Status */
+        .server-status {
+            background-color: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            margin-top: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .status-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .status-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .reset-schedule {
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+        }
+
+        .status-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(52, 168, 83, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .status-icon i {
+            font-size: 24px;
+            color: var(--accent);
+        }
+
+        .status-info h4 {
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .status-info p {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            text-align: center;
+            border-top: 4px solid var(--primary);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(26, 115, 232, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .feature-icon i {
+            font-size: 30px;
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+        }
+
+        /* Protocols Section */
+        .protocols {
+            background-color: var(--light);
+        }
+
+        .protocol-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            background-color: white;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .protocols-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .protocol-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
+            display: none;
+        }
+
+        .protocol-card.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .protocol-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+        }
+
+        .protocol-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d62d9 100%);
+            color: white;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .protocol-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .server-count {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+        }
+
+        .protocol-features {
+            padding: 25px;
+        }
+
+        .protocol-features ul {
+            list-style: none;
+        }
+
+        .protocol-features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .protocol-features li i {
+            color: var(--secondary);
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .protocol-actions {
+            padding: 0 25px 25px;
+        }
+
+        /* Tutorial Section */
+        .tutorial {
+            background-color: white;
+        }
+
+        .tutorial-steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 40px;
+            background-color: var(--light);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-light);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-right: 25px;
+            flex-shrink: 0;
+        }
+
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .step-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #0d62d9 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+
+        .cta .btn {
+            background-color: white;
+            color: var(--primary);
+        }
+
+        .cta .btn:hover {
+            background-color: var(--light);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-column p {
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1100;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            width: 90%;
+            max-width: 500px;
+            padding: 40px;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .modal h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--light-gray);
+            border-radius: var(--border-radius);
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-text {
+                margin-bottom: 60px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: var(--shadow);
+                transform: translateY(-100%);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--transition);
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 150px;
+            }
+
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .status-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+
+            .protocols-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><i class="fas fa-shield-alt"></i> FPVPN</a>
+                
+                <ul class="nav-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#protocols">Protokol</a></li>
+                    <li><a href="#features">Fitur</a></li>
+                    <li><a href="#tutorial">Tutorial</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                    <li><a href="#" class="btn btn-small" id="loginBtn">Masuk</a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Free <span>V2Ray</span> with high speed and secure connection</h1>
+                    <p>Get V2Ray acces with Cloudflare workers based, support many VPN apps. And enjoy more than 3 fantastic tools to help you configure the VPN.</p>
+                    
+                    <div class="hero-badges">
+                        <div class="badge"><i class="fas fa-bolt"></i> Fast Connection</div>
+                        <div class="badge"><i class="fas fa-lock"></i> Secured with Cloudflare</div>
+                        <div class="badge"><i class="fas fa-globe"></i> 40+ Regions</div>
+                        <div class="badge"><i class="fas fa-infinity"></i> Unlimited Access</div>
+                    </div>
+                    
+                    <div class="hero-btns">
+                        <a href="#protocols" class="btn"><i class="fas fa-rocket"></i> Get Started</a>
+                        <a href="#tutorial" class="btn"><i class="fas fa-play-circle"></i> See Tutorial</a>
+                        <a href="#server-status" class="btn"><i class="fas fa-server"></i> Server Status</a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80" alt="VPN Security">
+                </div>
+            </div>
+            
+            <!-- Server Status -->
+            <div class="server-status" id="server-status">
+                <div class="status-header">
+                    <h3>Status Server Live</h3>
+                    <div class="reset-schedule">
+                        <i class="far fa-clock"></i>
+                        <span>Reset: 00:00 & 12:00 (GMT+7) Setiap Hari</span>
+                    </div>
+                </div>
+                
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="status-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="status-info">
+                            <h4>Total Server</h4>
+                            <p>180+ Server Aktif</p>
+                        </div>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="status-icon">
+                            <i class="fas fa-globe-americas"></i>
+                        </div>
+                        <div class="status-info">
+                            <h4>Negara</h4>
+                            <p>60+ Negara Tersedia</p>
+                        </div>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="status-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="status-info">
+                            <h4>Pengguna Online</h4>
+                            <p>12,458 Aktif</p>
+                        </div>
+                    </div>
+                    
+                    <div class="status-item">
+                        <div class="status-icon">
+                            <i class="fas fa-signal"></i>
+                        </div>
+                        <div class="status-info">
+                            <h4>Uptime</h4>
+                            <p>99.9% Stabil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Protocols Section -->
+    <section class="protocols" id="protocols">
+        <div class="container">
+            <div class="section-title">
+                <h2>Protokol VPN & SSH</h2>
+                <p>Pilih dari berbagai protokol tunneling aman yang dirancang untuk privasi, keamanan, dan koneksi global.</p>
+            </div>
+            
+            <div class="protocol-filters">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="ssh">SSH</button>
+                <button class="filter-btn" data-filter="vpn">VPN</button>
+                <button class="filter-btn" data-filter="proxy">Proxy</button>
+            </div>
+            
+            <div class="protocols-grid">
+                <!-- SSH Dropbear -->
+                <div class="protocol-card active" data-category="ssh">
+                    <div class="protocol-header">
+                        <h3>SSH Dropbear</h3>
+                        <div class="server-count">12 Server</div>
+                    </div>
+                    <div class="protocol-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span>Implementasi SSH ringan untuk komunikasi aman</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Mendukung koneksi TCP dan UDP</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Setup sederhana untuk koneksi remote terenkripsi</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Kompatibel dengan berbagai klien SSH</span></li>
+                        </ul>
+                    </div>
+                    <div class="protocol-actions">
+                        <button class="btn btn-small btn-config"><i class="fas fa-cog"></i> Lihat Konfigurasi</button>
+                    </div>
+                </div>
+                
+                <!-- OpenVPN -->
+                <div class="protocol-card active" data-category="vpn">
+                    <div class="protocol-header">
+                        <h3>OpenVPN</h3>
+                        <div class="server-count">15 Server</div>
+                    </div>
+                    <div class="protocol-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span>Enkripsi 256-bit untuk komunikasi aman</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Beroperasi menggunakan protokol TCP dan UDP</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Kompatibel dengan semua platform utama</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Protokol VPN open-source terpercaya</span></li>
+                        </ul>
+                    </div>
+                    <div class="protocol-actions">
+                        <button class="btn btn-small btn-config"><i class="fas fa-cog"></i> Lihat Konfigurasi</button>
+                    </div>
+                </div>
+                
+                <!-- WireGuard -->
+                <div class="protocol-card active" data-category="vpn">
+                    <div class="protocol-header">
+                        <h3>WireGuard VPN</h3>
+                        <div class="server-count">12 Server</div>
+                    </div>
+                    <div class="protocol-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span>Protokol VPN modern dengan codebase minimal</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Kriptografi berkecepatan tinggi dan performa efisien</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Mudah dikonfigurasi dan dipelajari</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Open-source dan ideal untuk eksplorasi akademik</span></li>
+                        </ul>
+                    </div>
+                    <div class="protocol-actions">
+                        <button class="btn btn-small btn-config"><i class="fas fa-cog"></i> Lihat Konfigurasi</button>
+                    </div>
+                </div>
+                
+                <!-- ShadowSocks -->
+                <div class="protocol-card active" data-category="proxy">
+                    <div class="protocol-header">
+                        <h3>ShadowSocks</h3>
+                        <div class="server-count">18 Server</div>
+                    </div>
+                    <div class="protocol-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span>Protokol tunneling berbasis proxy modern</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Enkripsi lanjutan untuk koneksi aman dan pribadi</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Perform optimal dengan plugin OBFS untuk HTTP dan TLS</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Ringan, cepat, dan kompatibel dengan berbagai platform</span></li>
+                        </ul>
+                    </div>
+                    <div class="protocol-actions">
+                        <button class="btn btn-small btn-config"><i class="fas fa-cog"></i> Lihat Konfigurasi</button>
+                    </div>
+                </div>
+                
+                <!-- V2Ray VMess -->
+                <div class="protocol-card active" data-category="proxy">
+                    <div class="protocol-header">
+                        <h3>V2Ray VMess</h3>
+                        <div class="server-count">25 Server</div>
+                    </div>
+                    <div class="protocol-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span>Mengimplementasikan protokol VMess untuk komunikasi terenkripsi</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Mendukung kustomisasi routing dan transport</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Populer untuk mempelajari framework jaringan aman</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Fokus edukasi pada enkripsi tingkat protokol</span></li>
+                        </ul>
+                    </div>
+                    <div class="protocol-actions">
+                        <button class="btn btn-small btn-config"><i class="fas fa-cog"></i> Lihat Konfigurasi</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#" class="btn" id="viewAllProtocols"><i class="fas fa-list"></i> Lihat Semua Protokol</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fitur Keamanan & Privasi</h2>
+                <p>Teknologi keamanan dan metode jaringan inovatif yang dirancang untuk meningkatkan perlindungan privasi Anda.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Perlindungan Identitas</h3>
+                    <p>Koneksi terenkripsi dan saluran komunikasi aman untuk browsing yang aman, interaksi pribadi, dan aktivitas online rahasia.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Perlindungan WiFi Publik</h3>
+                    <p>Pelajari praktik terbaik untuk tetap aman di WiFi publik dengan menggunakan protokol terenkripsi yang mencegah akses tidak sah.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Performa Jaringan Optimal</h3>
+                    <p>Jelajahi bagaimana routing latensi rendah, protokol enkripsi, dan metode tunneling modern berkontribusi pada koneksi yang lebih cepat dan aman.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Praktik Akun Aman</h3>
+                    <p>Pelajari tentang metode autentikasi dan enkripsi aman yang melindungi kredensial pengguna dan identitas online selama komunikasi jaringan.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Infrastruktur Server Robust</h3>
+                    <p>Temukan pentingnya framework server yang andal yang mendukung koneksi terenkripsi dan integritas data untuk komunikasi pribadi.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Keandalan Berkelanjutan</h3>
+                    <p>Cari tahu bagaimana uptime, pemeliharaan server, dan pembaruan keamanan memastikan pengalaman digital yang konsisten dan aman.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section class="tutorial" id="tutorial">
+        <div class="container">
+            <div class="section-title">
+                <h2>Panduan Penggunaan</h2>
+                <p>Ikuti langkah-langkah sederhana ini untuk mulai menggunakan OceanVPN dalam hitungan menit.</p>
+            </div>
+            
+            <div class="tutorial-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Pilih Protokol VPN</h3>
+                        <p>Telusuri berbagai protokol tunneling yang tersedia (SSH, OpenVPN, WireGuard, dll.) dan pilih yang paling sesuai dengan kebutuhan Anda. Setiap protokol menawarkan keunggulan berbeda dalam hal kecepatan, keamanan, dan kompatibilitas.</p>
+                        <a href="#protocols" class="btn btn-small"><i class="fas fa-list"></i> Lihat Protokol</a>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Download Konfigurasi</h3>
+                        <p>Setelah memilih protokol, klik tombol "Lihat Konfigurasi" untuk mengakses file konfigurasi server. File ini berisi semua pengaturan yang diperlukan untuk menyambungkan perangkat Anda ke server VPN kami.</p>
+                        <button class="btn btn-small btn-download"><i class="fas fa-download"></i> Contoh Konfigurasi</button>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Impor ke Klien VPN</h3>
+                        <p>Impor file konfigurasi ke aplikasi klien VPN yang sesuai di perangkat Anda. Untuk OpenVPN, gunakan aplikasi OpenVPN Client. Untuk WireGuard, gunakan aplikasi WireGuard. Ikuti petunjuk di aplikasi untuk menyelesaikan proses impor.</p>
+                        <button class="btn btn-small btn-apps"><i class="fas fa-mobile-alt"></i> Rekomendasi Aplikasi</button>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Sambungkan & Nikmati</h3>
+                        <p>Setelah konfigurasi diimpor, pilih server yang diinginkan dan sambungkan. Anda sekarang dapat menikmati browsing yang aman, akses konten global, dan privasi online dengan bandwidth tak terbatas.</p>
+                        <button class="btn btn-small btn-success"><i class="fas fa-play"></i> Mulai Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="contact">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Siap Melindungi Koneksi Internet Anda?</h2>
+                <p>Bergabunglah dengan jutaan pengguna yang mempercayakan keamanan online mereka kepada OceanVPN. Mulai sekarang dan nikmati internet yang bebas, aman, dan tanpa batas.</p>
+                <button class="btn" id="getStartedBtn"><i class="fas fa-rocket"></i> Dapatkan Akses Gratis</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tentang OceanVPN</h3>
+                    <p>OceanVPN adalah platform yang berfokus pada teknologi jaringan aman dan tunneling seperti SSH, OpenVPN, dan WireGuard. Kami berkomitmen untuk menyediakan akses internet aman dan gratis untuk semua.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-telegram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Protokol VPN</h3>
+                    <ul class="footer-links">
+                        <li><a href="#protocols">SSH Dropbear</a></li>
+                        <li><a href="#protocols">OpenVPN</a></li>
+                        <li><a href="#protocols">WireGuard</a></li>
+                        <li><a href="#protocols">ShadowSocks</a></li>
+                        <li><a href="#protocols">V2Ray VMess</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Tautan Cepat</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#protocols">Protokol</a></li>
+                        <li><a href="#features">Fitur</a></li>
+                        <li><a href="#tutorial">Tutorial</a></li>
+                        <li><a href="#server-status">Status Server</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Bantuan & Dukungan</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" id="faqBtn">FAQ</a></li>
+                        <li><a href="#" id="contactBtn">Hubungi Kami</a></li>
+                        <li><a href="#" id="tosBtn">Syarat Layanan</a></li>
+                        <li><a href="#" id="privacyBtn">Kebijakan Privasi</a></li>
+                        <li><a href="#" id="statusBtn">Status Layanan</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 OceanVPN. Layanan VPN Gratis dengan Bandwidth Tak Terbatas. Hak cipta dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <button class="modal-close" id="loginModalClose">&times;</button>
+            <h3>Masuk ke Akun OceanVPN</h3>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" placeholder="email@contoh.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Kata Sandi</label>
+                    <input type="password" id="loginPassword" placeholder="Kata sandi Anda" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Masuk</button>
+                </div>
+                <p style="text-align: center; margin-top: 20px; color: var(--gray);">
+                    Belum punya akun? <a href="#" id="showRegister" style="color: var(--primary);">Daftar di sini</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <button class="modal-close" id="registerModalClose">&times;</button>
+            <h3>Daftar Akun OceanVPN</h3>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Nama Lengkap</label>
+                    <input type="text" id="registerName" placeholder="Nama Anda" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" placeholder="email@contoh.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Kata Sandi</label>
+                    <input type="password" id="registerPassword" placeholder="Buat kata sandi" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Konfirmasi Kata Sandi</label>
+                    <input type="password" id="registerConfirmPassword" placeholder="Ulangi kata sandi" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn">Daftar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Config Modal -->
+    <div class="modal" id="configModal">
+        <div class="modal-content">
+            <button class="modal-close" id="configModalClose">&times;</button>
+            <h3 id="configTitle">Konfigurasi Server</h3>
+            <div class="form-group">
+                <label for="configContent">Salin konfigurasi di bawah ini:</label>
+                <textarea id="configContent" rows="10" readonly style="font-family: monospace; font-size: 14px;"></textarea>
+            </div>
+            <div class="form-group">
+                <button class="btn" id="copyConfigBtn"><i class="fas fa-copy"></i> Salin Konfigurasi</button>
+                <a href="#" class="btn btn-secondary" id="downloadConfigBtn"><i class="fas fa-download"></i> Download File</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Header scroll effect
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Protocol filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const protocolCards = document.querySelectorAll('.protocol-card');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                // Show/hide cards based on filter
+                protocolCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.classList.add('active');
+                    } else {
+                        if (card.getAttribute('data-category') === filter) {
+                            card.classList.add('active');
+                        } else {
+                            card.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Modal functionality
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const loginModalClose = document.getElementById('loginModalClose');
+        const showRegister = document.getElementById('showRegister');
+        const registerModal = document.getElementById('registerModal');
+        const registerModalClose = document.getElementById('registerModalClose');
+        const getStartedBtn = document.getElementById('getStartedBtn');
+        const configModal = document.getElementById('configModal');
+        const configModalClose = document.getElementById('configModalClose');
+        const copyConfigBtn = document.getElementById('copyConfigBtn');
+        const downloadConfigBtn = document.getElementById('downloadConfigBtn');
+        const configContent = document.getElementById('configContent');
+        const configTitle = document.getElementById('configTitle');
+        
+        // Login modal
+        loginBtn.addEventListener('click', () => {
+            loginModal.classList.add('active');
+        });
+        
+        loginModalClose.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+        });
+        
+        // Show register modal
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('active');
+            registerModal.classList.add('active');
+        });
+        
+        registerModalClose.addEventListener('click', () => {
+            registerModal.classList.remove('active');
+        });
+        
+        // Get started button
+        getStartedBtn.addEventListener('click', () => {
+            registerModal.classList.add('active');
+        });
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('active');
+            }
+            if (e.target === registerModal) {
+                registerModal.classList.remove('active');
+            }
+            if (e.target === configModal) {
+                configModal.classList.remove('active');
+            }
+        });
+        
+        // Form submissions
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Login berhasil! Anda akan diarahkan ke dashboard.');
+            loginModal.classList.remove('active');
+        });
+        
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Pendaftaran berhasil! Silakan periksa email Anda untuk verifikasi.');
+            registerModal.classList.remove('active');
+        });
+        
+        // Protocol configuration buttons
+        document.querySelectorAll('.btn-config').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const protocolCard = btn.closest('.protocol-card');
+                const protocolName = protocolCard.querySelector('h3').textContent;
+                
+                configTitle.textContent = `Konfigurasi ${protocolName}`;
+                
+                // Generate sample configuration based on protocol
+                let sampleConfig = '';
+                if (protocolName.includes('OpenVPN')) {
+                    sampleConfig = `client
+dev tun
+proto udp
+remote jp-01.oceanvpn.com 1194
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+remote-cert-tls server
+cipher AES-256-CBC
+auth SHA256
+verb 3
+<ca>
+-----BEGIN CERTIFICATE-----
+MIID...SAMPLE CONFIG...Qq
+-----END CERTIFICATE-----
+</ca>`;
+                } else if (protocolName.includes('WireGuard')) {
+                    sampleConfig = `[Interface]
+PrivateKey = YOUR_PRIVATE_KEY_HERE
+Address = 10.8.0.2/24
+DNS = 1.1.1.1, 8.8.8.8
+
+[Peer]
+PublicKey = SERVER_PUBLIC_KEY_HERE
+Endpoint = sg-01.oceanvpn.com:51820
+AllowedIPs = 0.0.0.0/0`;
+                } else {
+                    sampleConfig = `# Konfigurasi ${protocolName}
+server: us-02.oceanvpn.com
+port: 443
+username: your_username
+password: your_password
+encryption: aes-256-gcm
+protocol: ${protocolName.split(' ')[0].toLowerCase()}
+# Tambahkan pengaturan lainnya sesuai kebutuhan`;
+                }
+                
+                configContent.value = sampleConfig;
+                configModal.classList.add('active');
+            });
+        });
+        
+        configModalClose.addEventListener('click', () => {
+            configModal.classList.remove('active');
+        });
+        
+        // Copy configuration to clipboard
+        copyConfigBtn.addEventListener('click', () => {
+            configContent.select();
+            document.execCommand('copy');
+            alert('Konfigurasi telah disalin ke clipboard!');
+        });
+        
+        // Download configuration as file
+        downloadConfigBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const protocolName = configTitle.textContent.replace('Konfigurasi ', '');
+            const blob = new Blob([configContent.value], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `oceanvpn-${protocolName.toLowerCase().replace(/ /g, '-')}.conf`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('File konfigurasi telah diunduh!');
+        });
+        
+        // View all protocols button
+        document.getElementById('viewAllProtocols').addEventListener('click', (e) => {
+            e.preventDefault();
+            // Activate all filter buttons and show all cards
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            document.querySelector('.filter-btn[data-filter="all"]').classList.add('active');
+            protocolCards.forEach(card => card.classList.add('active'));
+            
+            // Scroll to protocols section
+            document.getElementById('protocols').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Tutorial buttons
+        document.querySelector('.btn-download').addEventListener('click', () => {
+            alert('Contoh file konfigurasi telah diunduh! Periksa folder downloads Anda.');
+        });
+        
+        document.querySelector('.btn-apps').addEventListener('click', () => {
+            alert('Membuka halaman rekomendasi aplikasi klien VPN...');
+        });
+        
+        // Footer link modals
+        document.getElementById('faqBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Membuka halaman FAQ...');
+        });
+        
+        document.getElementById('contactBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Membuka halaman kontak...');
+        });
+        
+        document.getElementById('tosBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Membuka Syarat Layanan...');
+        });
+        
+        document.getElementById('privacyBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Membuka Kebijakan Privasi...');
+        });
+        
+        document.getElementById('statusBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('server-status').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for animation
+        document.querySelectorAll('.feature-card, .protocol-card, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+        
+        // Simulate live user count update
+        function updateUserCount() {
+            const userCountElement = document.querySelector('.status-item:nth-child(3) p');
+            const currentCount = parseInt(userCountElement.textContent.replace(/\D/g, ''));
+            const randomChange = Math.floor(Math.random() * 100) - 50; // -50 to +50
+            const newCount = Math.max(12000, currentCount + randomChange);
+            userCountElement.textContent = `${newCount.toLocaleString()} Aktif`;
+        }
+        
+        // Update every 30 seconds
+        setInterval(updateUserCount, 30000);
+        
+        // Initial animations
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.badge').forEach((badge, index) => {
+                setTimeout(() => {
+                    badge.style.opacity = '1';
+                    badge.style.transform = 'translateY(0)';
+                }, 300 + (index * 100));
+            });
+        });
+    </script>
+</body>
+</html>
