@@ -11,13 +11,22 @@
   <meta property="og:description" content="Simple, modern landing page template — fast, responsive, and accessible." />
   <meta property="og:type" content="website" />
 
+  <!-- Stylesheet: edit colors and spacing in styles.css -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!--
+    NOTE FOR BEGINNERS:
+    - Edit the site title in the <title> above.
+    - Change the brand name/logo below inside the <a class="brand"> block.
+    - Modify hero text inside the <h1> and <p class="lead">.
+    - To change colors, open styles.css (search for :root).
+    -->
+
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="#hero" aria-label="Acme home">
-        <!-- Inline logo -->
+        <!-- Simple logo: replace with your SVG or an <img> -->
         <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#g)"></rect>
           <defs>
@@ -30,10 +39,10 @@
         <span class="brand-name">Acme</span>
       </a>
 
-      <nav id="nav" class="nav" aria-label="Primary navigation">
+      <!-- Primary navigation: keep this minimal -->
+      <nav id="nav" class="nav" aria-label="Primary navigation" aria-hidden="true">
         <ul class="nav-list">
           <li><a href="#features">Features</a></li>
-          <li><a href="#pricing">Pricing</a></li>
           <li><a href="#testimonials">Testimonials</a></li>
           <li><a href="#newsletter">Get started</a></li>
         </ul>
@@ -49,27 +58,34 @@
   </header>
 
   <main>
+    <!-- HERO: Short, clear benefit statement -->
     <section id="hero" class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <h1>Build better products, faster.</h1>
-          <p class="lead">A minimal landing page template for presenting your product, collecting leads, and converting visitors.</p>
+          <h1>Start building great things today.</h1>
+          <p class="lead">A simple landing page template to present your idea, collect signups, and get started fast.</p>
+
           <div class="hero-ctas">
             <a class="btn btn-primary" href="#newsletter">Get started — it's free</a>
             <a class="btn btn-ghost" href="#features">See features</a>
           </div>
+
           <ul class="trust">
             <li>Trusted by <strong>1,200+</strong> teams</li>
             <li><strong>99.9%</strong> uptime</li>
           </ul>
+
+          <!-- Tiny hint for beginners -->
+          <p class="hint">Tip: edit this text in <code>index.html</code> and replace the logo with your own SVG or an image.</p>
         </div>
+
         <div class="hero-media" aria-hidden="true">
           <div class="mockup">
             <div class="window">
               <div class="tabbar"></div>
               <div class="content">
                 <h3>Welcome</h3>
-                <p>Clean UI — fast performance — delightful UX.</p>
+                <p>Clean UI — fast performance — easy to edit.</p>
               </div>
             </div>
           </div>
@@ -77,6 +93,7 @@
       </div>
     </section>
 
+    <!-- FEATURES: keep short and editable -->
     <section id="features" class="section features">
       <div class="container">
         <h2 class="section-title">Features that help you ship</h2>
@@ -104,23 +121,66 @@
       </div>
     </section>
 
-    <section id="pricing" class="section pricing">
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="section testimonials">
       <div class="container">
-        <h2 class="section-title">Simple pricing</h2>
-        <p class="section-sub">Only what you need to start.</p>
+        <h2 class="section-title">What customers say</h2>
 
-        <div class="pricing-grid">
-          <div class="plan">
-            <h3>Starter</h3>
-            <p class="price">$0<span>/month</span></p>
-            <ul>
-              <li>Basic features</li>
-              <li>Community support</li>
-              <li>1 project</li>
-            </ul>
-            <a class="btn btn-primary" href="#newsletter">Start free</a>
-          </div>
+        <div class="testimonials-grid">
+          <blockquote class="testimonial">
+            <p>"Acme helped our team ship faster. The template is beautiful and easy to adapt."</p>
+            <footer>— Alex Johnson, Product Lead</footer>
+          </blockquote>
 
+          <blockquote class="testimonial">
+            <p>"Great performance and a simple developer experience. We used it to bootstrap our marketing site."</p>
+            <footer>— Priya Singh, Frontend Engineer</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER / SIGNUP -->
+    <section id="newsletter" class="section newsletter">
+      <div class="container newsletter-inner">
+        <div>
+          <h2>Ready to get started?</h2>
+          <p>Join thousands who've launched with Acme. Enter your email to get updates.</p>
+        </div>
+
+        <!--
+          Beginner notes:
+          - This form currently only simulates a signup in the browser.
+          - To connect to a real service: replace the fetch stub in script.js with your API endpoint or use Mailchimp/Formspree/etc.
+        -->
+        <form id="subscribeForm" class="subscribe-form" novalidate>
+          <label for="email" class="sr-only">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" />
+          <button class="btn btn-primary" type="submit">Join free</button>
+        </form>
+
+        <p id="formMessage" role="status" aria-live="polite" class="form-message" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <p>&copy; <span id="year"></span> Acme — Built with care.</p>
+      </div>
+      <div class="footer-right">
+        <a href="#" aria-label="Twitter">Twitter</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="#" aria-label="Contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Helpful script: read the comments in script.js to learn how it works -->
+  <script src="script.js" defer></script>
+</body>
+  </html>
           <div class="plan popular">
             <div class="badge">Popular</div>
             <h3>Pro</h3>
