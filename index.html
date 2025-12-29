@@ -1446,55 +1446,6 @@
             alert('Pendaftaran berhasil! Silakan periksa email Anda untuk verifikasi.');
             registerModal.classList.remove('active');
         });
-        
-        // Protocol configuration buttons
-        document.querySelectorAll('.btn-config').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const protocolCard = btn.closest('.protocol-card');
-                const protocolName = protocolCard.querySelector('h3').textContent;
-                
-                configTitle.textContent = `Konfigurasi ${protocolName}`;
-                
-                // Generate sample configuration based on protocol
-                let sampleConfig = '';
-                if (protocolName.includes('OpenVPN')) {
-                    sampleConfig = `client
-dev tun
-proto udp
-remote jp-01.oceanvpn.com 1194
-resolv-retry infinite
-nobind
-persist-key
-persist-tun
-remote-cert-tls server
-cipher AES-256-CBC
-auth SHA256
-verb 3
-<ca>
------BEGIN CERTIFICATE-----
-MIID...SAMPLE CONFIG...Qq
------END CERTIFICATE-----
-</ca>`;
-                } else if (protocolName.includes('WireGuard')) {
-                    sampleConfig = `[Interface]
-PrivateKey = YOUR_PRIVATE_KEY_HERE
-Address = 10.8.0.2/24
-DNS = 1.1.1.1, 8.8.8.8
-
-[Peer]
-PublicKey = SERVER_PUBLIC_KEY_HERE
-Endpoint = sg-01.oceanvpn.com:51820
-AllowedIPs = 0.0.0.0/0`;
-                } else {
-                    sampleConfig = `# Konfigurasi ${protocolName}
-server: us-02.oceanvpn.com
-port: 443
-username: your_username
-password: your_password
-encryption: aes-256-gcm
-protocol: ${protocolName.split(' ')[0].toLowerCase()}
-# Tambahkan pengaturan lainnya sesuai kebutuhan`;
-                }
                 
                 configContent.value = sampleConfig;
                 configModal.classList.add('active');
