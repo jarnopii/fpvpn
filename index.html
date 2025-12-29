@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Simple, modern landing page template — fast, responsive, and accessible." />
+  <title>Acme — Simple Landing Page</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Acme — Simple Landing Page" />
+  <meta property="og:description" content="Simple, modern landing page template — fast, responsive, and accessible." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#hero" aria-label="Acme home">
+        <!-- Inline logo -->
+        <svg width="36" height="36" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <rect x="2" y="2" width="20" height="20" rx="5" fill="url(#g)"></rect>
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#4f46e5"/>
+              <stop offset="1" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="brand-name">Acme</span>
+      </a>
+
+      <nav id="nav" class="nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#newsletter">Get started</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a class="btn btn-secondary" href="#newsletter">Try free</a>
+        <button id="menuToggle" class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Toggle navigation">
+          <span class="hamburger"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1>Build better products, faster.</h1>
+          <p class="lead">A minimal landing page template for presenting your product, collecting leads, and converting visitors.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#newsletter">Get started — it's free</a>
+            <a class="btn btn-ghost" href="#features">See features</a>
+          </div>
+          <ul class="trust">
+            <li>Trusted by <strong>1,200+</strong> teams</li>
+            <li><strong>99.9%</strong> uptime</li>
+          </ul>
+        </div>
+        <div class="hero-media" aria-hidden="true">
+          <div class="mockup">
+            <div class="window">
+              <div class="tabbar"></div>
+              <div class="content">
+                <h3>Welcome</h3>
+                <p>Clean UI — fast performance — delightful UX.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="section features">
+      <div class="container">
+        <h2 class="section-title">Features that help you ship</h2>
+        <p class="section-sub">Everything you need to launch and iterate quickly.</p>
+
+        <div class="features-grid">
+          <article class="feature-card" tabindex="0">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2l3 7h7l-5.5 4.2L20 22l-8-5-8 5 1.5-8.8L0 9h7z"/></svg>
+            <h3>Fast performance</h3>
+            <p>Optimized markup and styles for fast loads and smooth interactions.</p>
+          </article>
+
+          <article class="feature-card" tabindex="0">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2z"/></svg>
+            <h3>Accessible</h3>
+            <p>Semantic HTML, keyboard navigation, and ARIA where appropriate.</p>
+          </article>
+
+          <article class="feature-card" tabindex="0">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 4h16v2H4zM4 10h16v2H4zM4 16h16v2H4z"/></svg>
+            <h3>Customizable</h3>
+            <p>Easily adapt styles, copy, and assets to match your brand.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section pricing">
+      <div class="container">
+        <h2 class="section-title">Simple pricing</h2>
+        <p class="section-sub">Only what you need to start.</p>
+
+        <div class="pricing-grid">
+          <div class="plan">
+            <h3>Starter</h3>
+            <p class="price">$0<span>/month</span></p>
+            <ul>
+              <li>Basic features</li>
+              <li>Community support</li>
+              <li>1 project</li>
+            </ul>
+            <a class="btn btn-primary" href="#newsletter">Start free</a>
+          </div>
+
+          <div class="plan popular">
+            <div class="badge">Popular</div>
+            <h3>Pro</h3>
+            <p class="price">$12<span>/month</span></p>
+            <ul>
+              <li>Unlimited projects</li>
+              <li>Email support</li>
+              <li>Advanced integrations</li>
+            </ul>
+            <a class="btn btn-primary" href="#newsletter">Buy now</a>
+          </div>
+
+          <div class="plan">
+            <h3>Enterprise</h3>
+            <p class="price">Contact</p>
+            <ul>
+              <li>SSO & SLA</li>
+              <li>Dedicated support</li>
+              <li>Custom contract</li>
+            </ul>
+            <a class="btn btn-ghost" href="#newsletter">Contact sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials" class="section testimonials">
+      <div class="container">
+        <h2 class="section-title">What customers say</h2>
+
+        <div class="testimonials-grid">
+          <blockquote class="testimonial">
+            <p>"Acme helped our team ship faster. The template is beautiful and easy to adapt."</p>
+            <footer>— Alex Johnson, Product Lead</footer>
+          </blockquote>
+
+          <blockquote class="testimonial">
+            <p>"Great performance and a simple developer experience. We used it to bootstrap our marketing site."</p>
+            <footer>— Priya Singh, Frontend Engineer</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="newsletter" class="section newsletter">
+      <div class="container newsletter-inner">
+        <div>
+          <h2>Ready to get started?</h2>
+          <p>Join thousands who've launched with Acme.</p>
+        </div>
+
+        <form id="subscribeForm" class="subscribe-form" novalidate>
+          <label for="email" class="sr-only">Email address</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required aria-required="true" />
+          <button class="btn btn-primary" type="submit">Join free</button>
+        </form>
+
+        <p id="formMessage" role="status" aria-live="polite" class="form-message" hidden></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <p>&copy; <span id="year"></span> Acme — Built with care.</p>
+      </div>
+      <div class="footer-right">
+        <a href="#" aria-label="Twitter">Twitter</a>
+        <a href="#" aria-label="GitHub">GitHub</a>
+        <a href="#" aria-label="Contact">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+  </html>
