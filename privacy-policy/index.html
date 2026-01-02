@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - FPVPN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2c7be5;
+            --secondary-blue: #1c5fb8;
+            --primary-green: #00d97e;
+            --secondary-green: #00b16a;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --gray-dark: #6c757d;
+            --dark: #0a2540;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f0fff8 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .breadcrumb {
+            background: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            border-left: 5px solid var(--primary-blue);
+            border-right: 5px solid var(--primary-green);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+
+        .breadcrumb i {
+            color: var(--gray-dark);
+            font-size: 0.8rem;
+        }
+
+        .breadcrumb .current {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .privacy-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-blue);
+            border-right: 5px solid var(--primary-green);
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(to right, var(--primary-blue), var(--primary-green)) 1;
+        }
+
+        .privacy-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .privacy-header p {
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+        }
+
+        .privacy-update {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            font-style: italic;
+        }
+
+        .privacy-item {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .privacy-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .privacy-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: 600;
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+
+        .privacy-title {
+            display: inline-block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .privacy-content {
+            margin-left: 50px;
+            margin-top: 15px;
+        }
+
+        .privacy-content p {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .privacy-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .privacy-content li {
+            margin-bottom: 10px;
+            color: var(--dark);
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .privacy-content li:before {
+            content: "•";
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: -10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(90deg, rgba(44, 123, 229, 0.05), rgba(0, 217, 126, 0.05));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .highlight-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .no-data-box {
+            background: linear-gradient(90deg, rgba(0, 217, 126, 0.05), rgba(0, 217, 126, 0.1));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .no-data-title {
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .security-box {
+            background: linear-gradient(90deg, rgba(44, 123, 229, 0.08), rgba(44, 123, 229, 0.15));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--secondary-blue);
+        }
+
+        .security-title {
+            font-weight: 600;
+            color: var(--secondary-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .privacy-summary {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(90deg, rgba(44, 123, 229, 0.05), rgba(0, 217, 126, 0.05));
+            border-radius: var(--radius);
+            border: 2px solid var(--gray-medium);
+        }
+
+        .privacy-summary h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .data-table th {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .data-table td {
+            padding: 15px;
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .data-table tr:nth-child(even) {
+            background-color: var(--gray-light);
+        }
+
+        .data-table tr:hover {
+            background-color: rgba(44, 123, 229, 0.05);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-collected {
+            background-color: rgba(0, 217, 126, 0.1);
+            color: var(--primary-green);
+            border: 1px solid rgba(0, 217, 126, 0.3);
+        }
+
+        .status-not-collected {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: #e74c3c;
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid var(--gray-medium);
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gray-dark);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .footer-links a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .privacy-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .privacy-title {
+                font-size: 1.2rem;
+            }
+            
+            .privacy-content {
+                margin-left: 0;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .privacy-number {
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                font-size: 1rem;
+            }
+            
+            .data-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="https://fpvpntools.qzz.io"><i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">Privacy Policy</span>
+        </div>
+
+        <!-- Privacy Policy Content -->
+        <div class="privacy-container">
+            <div class="privacy-header">
+                <h1><i class="fas fa-user-shield"></i> Privacy Policy</h1>
+                <p>Your privacy is important to us. This policy explains how we handle your information.</p>
+                <div class="privacy-update">
+                    <i class="fas fa-clock"></i> Last Updated: January 2026
+                </div>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="privacy-item">
+                <div class="privacy-number">1</div>
+                <div class="privacy-title">Introduction</div>
+                <div class="privacy-content">
+                    <p>This Privacy Policy explains how FPVPN Tools handles information when you access our website and services.</p>
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Our Commitment</span>
+                        </div>
+                        <p>We are committed to protecting your privacy and ensuring a safe, private experience while using our tools. This policy outlines what information we collect (and don't collect) and how we use it.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="privacy-item">
+                <div class="privacy-number">2</div>
+                <div class="privacy-title">No Account / No Personal Data Required</div>
+                <div class="privacy-content">
+                    <p>We do not require user accounts and do not collect personal information to provide the core functionality of the Service.</p>
+                    <div class="no-data-box">
+                        <div class="no-data-title">
+                            <i class="fas fa-user-slash"></i>
+                            <span>Privacy By Design</span>
+                        </div>
+                        <p>FPVPN Tools is designed to work without collecting personal information. No registration, no email collection, and no personal data tracking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="privacy-item">
+                <div class="privacy-number">3</div>
+                <div class="privacy-title">What We Collect</div>
+                <div class="privacy-content">
+                    <p><strong>Non-Personal Browser Data</strong> — We may collect general usage statistics (e.g., server status requests, tool usage counts) strictly to improve the Service.</p>
+                    
+                    <p><strong>No Personal Identifiers</strong> — We do not store names, emails, IP addresses, or other identifiers as part of user configuration.</p>
+                    
+                    <p>Your use is largely private and completed through your browser and the tools you select.</p>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-database"></i>
+                            <span>Data Collection Summary</span>
+                        </div>
+                        
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Data Type</th>
+                                    <th>Collected?</th>
+                                    <th>Purpose</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Personal Information (Name, Email, etc.)</td>
+                                    <td><span class="status-badge status-not-collected">NOT COLLECTED</span></td>
+                                    <td>Not required for service</td>
+                                </tr>
+                                <tr>
+                                    <td>IP Addresses</td>
+                                    <td><span class="status-badge status-not-collected">NOT COLLECTED</span></td>
+                                    <td>Not stored or logged</td>
+                                </tr>
+                                <tr>
+                                    <td>Usage Statistics (Anonymous)</td>
+                                    <td><span class="status-badge status-collected">COLLECTED</span></td>
+                                    <td>Service improvement only</td>
+                                </tr>
+                                <tr>
+                                    <td>Browser Information</td>
+                                    <td><span class="status-badge status-collected">LIMITED</span></td>
+                                    <td>Compatibility optimization</td>
+                                </tr>
+                                <tr>
+                                    <td>VPN Configurations</td>
+                                    <td><span class="status-badge status-not-collected">NOT STORED</span></td>
+                                    <td>Processed locally in browser</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="privacy-item">
+                <div class="privacy-number">4</div>
+                <div class="privacy-title">Cookies and Tracking</div>
+                <div class="privacy-content">
+                    <p>We do not rely on tracking cookies or third-party trackers to operate the main functions of the Service.</p>
+                    <div class="no-data-box">
+                        <div class="no-data-title">
+                            <i class="fas fa-cookie-bite"></i>
+                            <span>Minimal Cookie Usage</span>
+                        </div>
+                        <p>FPVPN Tools uses only essential technical cookies (if any) for basic functionality. We do not use tracking cookies, advertising cookies, or any cookies that monitor your browsing behavior across other sites.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="privacy-item">
+                <div class="privacy-number">5</div>
+                <div class="privacy-title">Security</div>
+                <div class="privacy-content">
+                    <p>We use standard security measures to protect the integrity of the website and its tools. However, no online service is completely secure; users should exercise caution and use trusted networks where possible.</p>
+                    <div class="security-box">
+                        <div class="security-title">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security Measures</span>
+                        </div>
+                        <ul>
+                            <li>HTTPS encryption for all connections</li>
+                            <li>Regular security updates</li>
+                            <li>Minimal data retention</li>
+                            <li>Secure hosting infrastructure</li>
+                        </ul>
+                        <p style="margin-top: 10px; font-size: 0.9rem; color: var(--gray-dark);">
+                            <i class="fas fa-exclamation-triangle"></i> <strong>Note:</strong> While we implement security measures, users should always practice safe browsing habits and use additional security tools when appropriate.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="privacy-item">
+                <div class="privacy-number">6</div>
+                <div class="privacy-title">Third-Party Services</div>
+                <div class="privacy-content">
+                    <p>Any links or features provided through third parties are governed by those entities' privacy practices.</p>
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-external-link-alt"></i>
+                            <span>External Links</span>
+                        </div>
+                        <p>FPVPN Tools may contain links to external websites or services. We are not responsible for the privacy practices or content of these third-party sites. We encourage users to review the privacy policies of any external sites they visit.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="privacy-item">
+                <div class="privacy-number">7</div>
+                <div class="privacy-title">Policy Changes</div>
+                <div class="privacy-content">
+                    <p>We may update this policy at any time by posting the updated version on the website. Continued use means you accept the changes.</p>
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>Policy Updates</span>
+                        </div>
+                        <p>We may occasionally update this Privacy Policy to reflect changes in our practices or for other operational, legal, or regulatory reasons. The "Last Updated" date at the top of this page will indicate when revisions were made.</p>
+                        <p style="margin-top: 10px;"><strong>Your continued use of FPVPN Tools after any changes to this Privacy Policy constitutes your acceptance of the revised policy.</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="privacy-summary">
+                <h3><i class="fas fa-check-circle"></i> Privacy Summary</h3>
+                <p>FPVPN Tools is committed to protecting your privacy by:</p>u
+                <ul style="text-align: left; display: inline-block; margin-top: 10px;">
+                    <li><strong>Not requiring</strong> personal information or accounts</li>
+                    <li><strong>Not collecting</strong> identifiable data like IP addresses</li>
+                    <li><strong>Not using</strong> tracking cookies or third-party trackers</li>
+                    <li><strong>Processing</strong> all configurations locally in your browser</li>
+                    <li><strong>Being transparent</strong> about what little data we do collect</li>
+                </ul>
+                <p style="margin-top: 20px;">If you have any questions about our privacy practices, please review our <a href="https://fpvpntools.qzz.io/faq">FAQ</a> for more information.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://fpvpntools.qzz.io">Home</a>
+                <a href="https://fpvpntools.qzz.io/faq">FAQ</a>
+                <a href="https://fpvpntools.qzz.io/tos">Terms of Service</a>
+                <a href="#" class="active">Privacy Policy</a>
+            </div>
+            <p><i class="fas fa-info-circle"></i> Privacy Policy &copy; 2025 FPVPN.</p>
+            <p>All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
