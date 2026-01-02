@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - FPVPN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2c7be5;
+            --secondary-blue: #1c5fb8;
+            --primary-green: #00d97e;
+            --secondary-green: #00b16a;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --gray-dark: #6c757d;
+            --dark: #0a2540;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f0fff8 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .breadcrumb {
+            background: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            border-left: 5px solid var(--primary-blue);
+            border-right: 5px solid var(--primary-green);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+
+        .breadcrumb i {
+            color: var(--gray-dark);
+            font-size: 0.8rem;
+        }
+
+        .breadcrumb .current {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .faq-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-blue);
+            border-right: 5px solid var(--primary-green);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(to right, var(--primary-blue), var(--primary-green)) 1;
+        }
+
+        .faq-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .faq-header p {
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+        }
+
+        .faq-item {
+            margin-bottom: 25px;
+            border: 2px solid var(--gray-medium);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .faq-question {
+            background: linear-gradient(90deg, var(--light-blue), var(--light-green));
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: linear-gradient(90deg, #e3f2fd, #e8f7ef);
+        }
+
+        .faq-question i {
+            color: var(--primary-blue);
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            background: var(--white);
+        }
+
+        .faq-answer.active {
+            padding: 25px;
+            max-height: 1000px;
+        }
+
+        .faq-answer p {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .faq-answer ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .faq-answer li {
+            margin-bottom: 8px;
+            color: var(--dark);
+        }
+
+        .highlight {
+            background: linear-gradient(90deg, rgba(44, 123, 229, 0.1), rgba(0, 217, 126, 0.1));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .highlight-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tool-item {
+            background: var(--gray-light);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .tool-item:hover {
+            background: var(--gray-medium);
+            transform: translateY(-3px);
+        }
+
+        .tool-item i {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+
+        .contact-info {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(90deg, rgba(44, 123, 229, 0.05), rgba(0, 217, 126, 0.05));
+            border-radius: var(--radius);
+            border: 2px solid var(--gray-medium);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .contact-info a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid var(--gray-medium);
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gray-dark);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .footer-links a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .faq-question {
+                font-size: 1.1rem;
+                padding: 18px;
+            }
+            
+            .faq-answer.active {
+                padding: 20px;
+            }
+            
+            .tool-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+        }
+
+        /* Tambahan untuk efek smooth */
+        :root {
+            --light-blue: #e3f2fd;
+            --light-green: #e8f7ef;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">FAQ</span>
+        </div>
+
+        <!-- FAQ Content -->
+        <div class="faq-container">
+            <div class="faq-header">
+                <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+                <p>Find answers to common questions about FPVPN Tools</p>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(1)">
+                    <span>1. What is FPVPN Tools?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="answer1">
+                    <p>FPVPN Tools is a free service that offers a free premium VPN solution with unlimited access, powered by Cloudflare Workers, plus additional network and configuration tools designed to help users set up secure connections and optimize network performance.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(2)">
+                    <span>2. Do I need to create an account to use the service?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="answer2">
+                    <p><strong>No</strong> — FPVPN Tools does not require user accounts. You can access the tools directly without signing up.</p>
+                    <div class="highlight">
+                        <div class="highlight-title">
+                            <i class="fas fa-info-circle"></i>
+                            <span>No Registration Required</span>
+                        </div>
+                        <p>Enjoy instant access to all tools without any registration process. Simply visit the website and start using the tools immediately.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(3)">
+                    <span>3. Is FPVPN really free?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="answer3">
+                    <p><strong>Yes</strong> — the VPN service and associated tools are offered completely free of charge.</p>
+                    <div class="highlight">
+                        <div class="highlight-title">
+                            <i class="fas fa-gift"></i>
+                            <span>100% Free Service</span>
+                        </div>
+                        <p>No hidden fees, no premium tiers, no subscription required. All features are available to everyone at no cost.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(4)">
+                    <span>4. How does FPVPN protect my privacy?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="answer4">
+                    <p>FPVPN uses modern networking methods and encryption to help protect your connection, particularly on public Wi-Fi and untrusted networks.</p>
+                    <div class="highlight">
+                        <div class="highlight-title">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Security Features</span>
+                        </div>
+                        <ul>
+                            <li>Modern encryption protocols</li>
+                            <li>Secure tunneling technology</li>
+                            <li>Protection on public Wi-Fi networks</li>
+                            <li>No logging of user activities</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(5)">
+                    <span>5. Which tools are available on FPVPN Tools?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="answer5">
+                    <p>Available tools include:</p>
+                    <ul>
+                        <li>Vmess, Vless, Trojan server setup</li>
+                        <li>Wildcard, Clash, and Sing-box converters for VPN configuration</li>
+                    </ul>
+                    <p>All designed to assist in setting up and exporting configurations easily.</p>
+                    
+                    <div class="highlight">
+                        <div class="highlight-title">
+                            <i class="fas fa-tools"></i>
+                            <span>Complete Tool Suite</span>
+                        </div>
+                        <div class="tool-list">
+                            <div class="tool-item">
+                                <i class="fas fa-server"></i>
+                                <span>Vmess Server Setup</span>
+                            </div>
+                            <div class="tool-item">
+                                <i class="fas fa-server"></i>
+                                <span>Vless Server Setup</span>
+                            </div>
+                            <div class="tool-item">
+                                <i class="fas fa-server"></i>
+                                <span>Trojan Server Setup</span>
+                            </div>
+                            <div class="tool-item">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Wildcard Converter</span>
+                            </div>
+                            <div class="tool-item">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Clash Converter</span>
+                            </div>
+                            <div class="tool-item">
+                                <i class="fas fa-exchange-alt"></i>
+                                <span>Sing-box Converter</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(6)">
+                    <span>6. Can I use FPVPN Tools on any device?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="answer6">
+                    <p><strong>Yes</strong> — as long as you can access the website through a web browser or compatible client, the tools and VPN configs can be used on devices that support the chosen VPN protocols.</p>
+                    <div class="highlight">
+                        <div class="highlight-title">
+                            <i class="fas fa-laptop"></i>
+                            <span>Multi-Device Compatibility</span>
+                        </div>
+                        <p>Works on Windows, macOS, Linux, Android, iOS, and any other platform with a modern web browser or VPN client support.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(7)">
+                    <span>7. Who can I contact for help?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer" id="answer7">
+                    <p>You can reach out via the Contact Us page on the website for support or questions.</p>
+                    <div class="contact-info">
+                        <h3><i class="fas fa-headset"></i> Need More Help?</h3>
+                        <p>If you have additional questions or need technical support, please visit our <a href="contact.html">Contact Us</a> page.</p>
+                        <p>We're here to help you get the most out of FPVPN Tools!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="faq/" class="active">FAQ</a>
+                <a href="tos/">Terms of Service</a>
+                <a href="privacy-policy/">Privacy Policy</a>
+            </div>
+            <p><i class="fas fa-info-circle"></i> FAQ &copy; 2025 FPVPN.</p>
+            <p>All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // FAQ Toggle Function
+        function toggleFAQ(number) {
+            const answer = document.getElementById(`answer${number}`);
+            const icon = document.querySelector(`#answer${number}`).previousElementSibling.querySelector('i');
+            
+            // Toggle active class
+            answer.classList.toggle('active');
+            
+            // Rotate icon
+            if (answer.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Auto-open first FAQ on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Open first FAQ by default
+            toggleFAQ(1);
+        });
+    </script>
+</body>
+</html>
