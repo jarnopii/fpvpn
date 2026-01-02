@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - FPVPN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2c7be5;
+            --secondary-blue: #1c5fb8;
+            --primary-green: #00d97e;
+            --secondary-green: #00b16a;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --gray-dark: #6c757d;
+            --dark: #0a2540;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f0fff8 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .breadcrumb {
+            background: var(--white);
+            padding: 15px 25px;
+            border-radius: var(--radius);
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            border-left: 5px solid var(--primary-blue);
+            border-right: 5px solid var(--primary-green);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--secondary-blue);
+            text-decoration: underline;
+        }
+
+        .breadcrumb i {
+            color: var(--gray-dark);
+            font-size: 0.8rem;
+        }
+
+        .breadcrumb .current {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .tos-container {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-blue);
+            border-right: 5px solid var(--primary-green);
+        }
+
+        .tos-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(to right, var(--primary-blue), var(--primary-green)) 1;
+        }
+
+        .tos-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tos-header p {
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+        }
+
+        .tos-update {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            font-style: italic;
+        }
+
+        .tos-item {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--gray-medium);
+        }
+
+        .tos-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .tos-number {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 36px;
+            font-weight: 600;
+            margin-right: 15px;
+            font-size: 1.1rem;
+        }
+
+        .tos-title {
+            display: inline-block;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .tos-content {
+            margin-left: 50px;
+            margin-top: 15px;
+        }
+
+        .tos-content p {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .tos-content ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .tos-content li {
+            margin-bottom: 10px;
+            color: var(--dark);
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .tos-content li:before {
+            content: "•";
+            color: var(--primary-green);
+            font-weight: bold;
+            position: absolute;
+            left: -10px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(90deg, rgba(44, 123, 229, 0.05), rgba(0, 217, 126, 0.05));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .highlight-title {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .warning-box {
+            background: linear-gradient(90deg, rgba(231, 76, 60, 0.05), rgba(231, 76, 60, 0.1));
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .warning-title {
+            font-weight: 600;
+            color: #e74c3c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .important-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: linear-gradient(90deg, rgba(44, 123, 229, 0.05), rgba(0, 217, 126, 0.05));
+            border-radius: var(--radius);
+            border: 2px solid var(--gray-medium);
+        }
+
+        .important-note h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid var(--gray-medium);
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--gray-dark);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .footer-links a.active {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .tos-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tos-title {
+                font-size: 1.2rem;
+            }
+            
+            .tos-content {
+                margin-left: 0;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .tos-number {
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="https://fpvpntools.qzz.io"><i class="fas fa-home"></i> Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <span class="current">Terms of Service</span>
+        </div>
+
+        <!-- TOS Content -->
+        <div class="tos-container">
+            <div class="tos-header">
+                <h1><i class="fas fa-file-contract"></i> Terms of Service</h1>
+                <p>Please read these Terms of Service carefully before using FPVPN Tools</p>
+                <div class="tos-update">
+                    <i class="fas fa-clock"></i> Last Updated: January 2026
+                </div>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="tos-item">
+                <div class="tos-number">1</div>
+                <div class="tos-title">Acceptance of Terms</div>
+                <div class="tos-content">
+                    <p>By using FPVPN Tools (the "Service"), you agree to these Terms of Service ("ToS"). If you do not agree, please do not use the Service.</p>
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>Important Notice</span>
+                        </div>
+                        <p>Your use of FPVPN Tools constitutes your acceptance of these Terms of Service. Continued use of the Service implies agreement with any future updates to these terms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2 -->
+            <div class="tos-item">
+                <div class="tos-number">2</div>
+                <div class="tos-title">Service Description</div>
+                <div class="tos-content">
+                    <p>FPVPN Tools provides free VPN access and network tools to assist with secure network configuration and browsing. All tools and features are offered at no cost and without the need for registration.</p>
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-gift"></i>
+                            <span>Free Service</span>
+                        </div>
+                        <p>Our service is completely free - no hidden charges, no premium tiers, and no registration required to access any features.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3 -->
+            <div class="tos-item">
+                <div class="tos-number">3</div>
+                <div class="tos-title">User Responsibilities</div>
+                <div class="tos-content">
+                    <p>Users must:</p>
+                    <ul>
+                        <li>Comply with applicable laws when using the Service.</li>
+                        <li>Not use the Service for unlawful or harmful activities.</li>
+                        <li>Understand that the Service is provided "as is" and performance may vary.</li>
+                    </ul>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-ban"></i>
+                            <span>Prohibited Activities</span>
+                        </div>
+                        <p>Users are strictly prohibited from using FPVPN Tools for illegal activities, hacking, spreading malware, or any activities that could harm others or disrupt network services.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 4 -->
+            <div class="tos-item">
+                <div class="tos-number">4</div>
+                <div class="tos-title">No Account Required</div>
+                <div class="tos-content">
+                    <p>The Service is available without user accounts; however, by using the Service, you implicitly agree to these Terms.</p>
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-user-shield"></i>
+                            <span>Privacy Focused</span>
+                        </div>
+                        <p>We respect your privacy. No personal information is collected, and no user accounts are required to use our services.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 5 -->
+            <div class="tos-item">
+                <div class="tos-number">5</div>
+                <div class="tos-title">Content and Use</div>
+                <div class="tos-content">
+                    <p>You may use the tools and configurations for personal and legitimate purposes. Any misuse, including attempts to disrupt the Service or harm others' systems, is prohibited.</p>
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Permitted Use</span>
+                        </div>
+                        <p>FPVPN Tools are intended for legitimate network configuration, privacy protection, and secure browsing purposes only.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 6 -->
+            <div class="tos-item">
+                <div class="tos-number">6</div>
+                <div class="tos-title">Service Changes</div>
+                <div class="tos-content">
+                    <p>We reserve the right to modify, suspend, or discontinue parts or all of the Service at any time without prior notice.</p>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Service Availability</span>
+                        </div>
+                        <p>While we strive to maintain service availability, FPVPN Tools is provided as a free service and may experience downtime or be discontinued at any time without notice.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 7 -->
+            <div class="tos-item">
+                <div class="tos-number">7</div>
+                <div class="tos-title">Disclaimer of Warranties</div>
+                <div class="tos-content">
+                    <p>The Service is provided without warranties of any kind. We cannot guarantee uninterrupted access or error-free performance.</p>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>No Warranties</span>
+                        </div>
+                        <p>FPVPN Tools is provided "as is" without any warranties, express or implied. Use at your own risk.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 8 -->
+            <div class="tos-item">
+                <div class="tos-number">8</div>
+                <div class="tos-title">Limitation of Liability</div>
+                <div class="tos-content">
+                    <p>Under no circumstances shall FPVPN Tools be liable for any indirect, incidental, special, or consequential damages arising out of your use of the Service.</p>
+                    <div class="warning-box">
+                        <div class="warning-title">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>Liability Disclaimer</span>
+                        </div>
+                        <p>FPVPN Tools and its operators are not liable for any damages, losses, or issues resulting from the use of our services.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 9 -->
+            <div class="tos-item">
+                <div class="tos-number">9</div>
+                <div class="tos-title">Governing Law</div>
+                <div class="tos-content">
+                    <p>These Terms are governed by applicable laws in jurisdictions where FPVPN Tools operates.</p>
+                    <div class="highlight-box">
+                        <div class="highlight-title">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>Legal Jurisdiction</span>
+                        </div>
+                        <p>Any legal matters relating to these Terms of Service will be governed by the laws applicable in the jurisdiction where FPVPN Tools operates.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="important-note">
+                <h3><i class="fas fa-info-circle"></i> Important Notice</h3>
+                <p>By continuing to use FPVPN Tools, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service.</p>
+                <p>If you have any questions about these Terms, please review our <a href="faq.html">FAQ</a> for more information.</p>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="https://fpvpntools.qzz.io">Home</a>
+                <a href="https://fpvpntools.qzz.io/faq">FAQ</a>
+                <a href="#" class="active">Terms of Service</a>
+                <a href="https://fpvpntools.qzz.io/privacy-policy">Privacy Policy</a>
+            </div>
+            <p><i class="fas fa-info-circle"></i> Terms of Service &copy; 2025 FPVPN</p>
+            <p>All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('a[href^="#"]');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
