@@ -924,6 +924,25 @@
                         <button class="btn btn-small btn-config" data-protocol="ssh-dropbear"><i class="fas fa-cog"></i> Create</button>
                     </div>
                 </div>
+
+                <!-- SSH Dropbear -->
+                <div class="protocol-card active" data-category="ssh">
+                    <div class="protocol-header">
+                        <h3>Vless Wildcard</h3>
+                        <div class="server-count">1 Servers</div>
+                    </div>
+                    <div class="protocol-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> <span>Create free and easy.</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>Vless available, Wildcard supported.</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>TLS(443) & NTLS(80).</span></li>
+                            <li><i class="fas fa-check-circle"></i> <span>1 servers, 11 countries.</span></li>
+                        </ul>
+                    </div>
+                    <div class="protocol-actions">
+                        <button class="btn btn-small btn-config" data-protocol="server-wc"><i class="fas fa-cog"></i> Create</button>
+                    </div>
+                </div>
                 
                 <!-- OpenVPN -->
                 <div class="protocol-card" data-category="vpn">
@@ -1203,6 +1222,7 @@
         // REPLACE THESE LINKS WITH YOUR OWN
         const configLinks = {
             'ssh-dropbear': 'server/',
+            'server-wc': 'server-wc/',
             'openvpn': 'wildcarc/',
             'wireguard': 'clasc/',
             'shadowsocks': 'sing-boc/'
