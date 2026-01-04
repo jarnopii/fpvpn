@@ -1,1 +1,1057 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server-WC - FPVPN</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2c7be5;
+            --secondary-blue: #1c5fb8;
+            --primary-green: #00d97e;
+            --secondary-green: #00b16a;
+            --light-blue: #e3f2fd;
+            --light-green: #e8f7ef;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-medium: #e9ecef;
+            --gray-dark: #6c757d;
+            --dark: #0a2540;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --radius: 12px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f0fff8 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 25px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary-blue);
+            border-bottom: 5px solid var(--primary-green);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--white);
+            box-shadow: 0 6px 12px rgba(44, 123, 229, 0.2);
+        }
+        
+        h1 {
+            color: var(--dark);
+            font-size: 2.3rem;
+            margin-bottom: 5px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 5px solid var(--primary-blue);
+            border-right: 5px solid var(--primary-green);
+        }
+        
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid;
+            border-image: linear-gradient(to right, var(--primary-blue), var(--primary-green)) 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .card-title i {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-dark);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 2px solid var(--gray-medium);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            background: var(--white);
+            color: var(--dark);
+        }
+        
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236c757d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px;
+            padding-right: 45px;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.1);
+        }
+        
+        .switch-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            background: linear-gradient(90deg, var(--light-blue), var(--light-green));
+            border-radius: 8px;
+            border: 2px solid var(--gray-medium);
+        }
+        
+        .switch-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--gray-medium);
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+        
+        .protocol-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(90deg, var(--light-blue), var(--light-green));
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .protocol-badge i {
+            color: var(--primary-blue);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(90deg, var(--secondary-blue), var(--secondary-green));
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-medium);
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        /* Modal Popup */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .modal {
+            background: var(--white);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 700px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            border-top: 5px solid var(--primary-blue);
+            border-bottom: 5px solid var(--primary-green);
+        }
+        
+        .modal-header {
+            padding: 25px 30px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .close-modal {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+        
+        .close-modal:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .modal-body {
+            padding: 30px;
+            overflow-y: auto;
+            max-height: calc(90vh - 150px);
+        }
+        
+        .config-summary {
+            background: var(--light-blue);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 4px solid var(--primary-blue);
+            border-right: 4px solid var(--primary-green);
+        }
+        
+        .config-summary-item {
+            margin-bottom: 12px;
+            display: flex;
+        }
+        
+        .config-summary-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .config-summary-label {
+            font-weight: 600;
+            min-width: 120px;
+            color: var(--dark);
+        }
+        
+        .config-summary-value {
+            color: var(--dark);
+            flex: 1;
+            word-break: break-all;
+        }
+        
+        .config-display-container {
+            position: relative;
+            margin-top: 20px;
+        }
+        
+        .config-display {
+            background: var(--gray-light);
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            word-break: break-all;
+            white-space: pre-wrap;
+            border: 2px solid var(--gray-medium);
+            max-height: 250px;
+            overflow-y: auto;
+            line-height: 1.5;
+        }
+        
+        .copy-config-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        
+        .copy-config-btn:hover {
+            background: linear-gradient(90deg, var(--secondary-blue), var(--secondary-green));
+        }
+        
+        .copy-config-btn.copied {
+            background: var(--secondary-green);
+        }
+        
+        .modal-footer {
+            padding: 20px 30px;
+            background: var(--gray-light);
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+        
+        .modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .modal-btn.close {
+            background: var(--white);
+            color: var(--gray-dark);
+            border: 2px solid var(--gray-medium);
+        }
+        
+        .modal-btn.close:hover {
+            background: var(--gray-medium);
+        }
+        
+        /* Loading Animation */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        
+        .loading-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .loader {
+            width: 70px;
+            height: 70px;
+            border: 5px solid var(--light-blue);
+            border-top: 5px solid var(--primary-blue);
+            border-bottom: 5px solid var(--primary-green);
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        .loading-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--dark);
+            background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .flag-emoji {
+            font-size: 1.2rem;
+            margin-right: 8px;
+        }
+        
+        .server-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--light-blue);
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+        
+        .server-info i {
+            color: var(--primary-blue);
+        }
+        
+        .dynamic-server {
+            color: var(--primary-green);
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">FP</div>
+                <div>
+                    <h1>Vless Wildcard</h1>
+                    <p class="subtitle">Create Vless Wildcard for free.</p>
+                </div>
+            </div>
+        </header>
+        
+        <div class="card">
+            <h2 class="card-title"><i class="fas fa-sliders-h"></i> Account Settings</h2>
+            
+            <div class="protocol-badge">
+                <i class="fas fa-bolt"></i>
+                <span>Protocol: Vless</span>
+            </div>
+            
+            <div class="form-group">
+                <label for="bugSelect"><i class="fas fa-bug"></i> Select Bug Address</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-globe input-icon"></i>
+                    <select id="bugSelect">
+                        <!-- Bug options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <small style="color: var(--gray-dark); margin-top: 5px; display: block;">
+                    <i class="fas fa-info-circle"></i> Selected bug will be used to generate server address: <span id="serverPreview" class="dynamic-server">nontontv.vidio.com.fpvpntools.qzz.io</span>
+                </small>
+            </div>
+            
+            <div class="form-group">
+                <label><i class="fas fa-lock"></i> TLS</label>
+                <div class="switch-container">
+                    <div class="switch-label">
+                        <i class="fas fa-shield-alt"></i>
+                        <span id="tlsStatus">TLS Enabled (Port: 443)</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="tlsSwitch" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="serverSelect"><i class="fas fa-cloud"></i> Server Selection</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-server input-icon"></i>
+                    <select id="serverSelect">
+                        <option value="1">Server 1 (Wildcard)</option>
+                    </select>
+                </div>
+                <div class="server-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Server format: <span id="serverFormat" class="dynamic-server">{bug}.fpvpntools.qzz.io</span></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="regionSelect"><i class="fas fa-flag"></i> Select Region/Country</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-map-marker-alt input-icon"></i>
+                    <select id="regionSelect">
+                        <option value="AU">🇦🇺 (AU) Australia</option>
+                        <option value="BR">🇧🇷 (BR) Brazil</option>
+                        <option value="CA">🇨🇦 (CA) Canada</option>
+                        <option value="HK">🇭🇰 (HK) Hong-Kong</option>
+                        <option value="ID" selected>🇮🇩 (ID) Indonesia</option>
+                        <option value="IN">🇮🇳 (IN) India</option>
+                        <option value="JP">🇯🇵 (JP) Japan</option>
+                        <option value="KR">🇰🇷 (KR) Korea</option>
+                        <option value="PL">🇵🇱 (PL) Polandia</option>
+                        <option value="SG">🇸🇬 (SG) Singapore</option>
+                        <option value="US">🇺🇸 (US) United States</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button class="btn btn-primary" id="generateBtn">
+                    <i class="fas fa-bolt"></i> Create
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+        </div>
+        
+        <footer>
+            <p><i class="fas fa-info-circle"></i> Vless Wildcard Server &copy; 2025 FPVPN.</p>
+            <p>All rights reserved.</p>
+        </footer>
+    </div>
+    
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+        <div class="loading-text">Creating</div>
+    </div>
+    
+    <!-- Modal Popup -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Success</span>
+                </div>
+                <button class="close-modal" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="config-summary">
+                    <div class="config-summary-item">
+                        <span class="config-summary-label">Protocol:</span>
+                        <span class="config-summary-value" id="modalProtocol">Vless</span>
+                    </div>
+                    <div class="config-summary-item">
+                        <span class="config-summary-label">Bug Address:</span>
+                        <span class="config-summary-value" id="modalBug">nontontv.vidio.com</span>
+                    </div>
+                    <div class="config-summary-item">
+                        <span class="config-summary-label">Server:</span>
+                        <span class="config-summary-value" id="modalServer">nontontv.vidio.com.fpvpntools.qzz.io</span>
+                    </div>
+                    <div class="config-summary-item">
+                        <span class="config-summary-label">Port:</span>
+                        <span class="config-summary-value" id="modalPort">443</span>
+                    </div>
+                    <div class="config-summary-item">
+                        <span class="config-summary-label">TLS:</span>
+                        <span class="config-summary-value" id="modalSecurity">Enabled</span>
+                    </div>
+                    <div class="config-summary-item">
+                        <span class="config-summary-label">Region:</span>
+                        <span class="config-summary-value" id="modalRegion">Indonesia (ID)</span>
+                    </div>
+                    <div class="config-summary-item">
+                        <span class="config-summary-label">Path:</span>
+                        <span class="config-summary-value" id="modalPath">/43.218.77.16-443</span>
+                    </div>
+                    <div class="config-summary-item">
+                        <span class="config-summary-label">UUID:</span>
+                        <span class="config-summary-value" id="modalUUID">fc60147e-76b8-4bc5-b691-90b2da79e3d2</span>
+                    </div>
+                </div>
+                
+                <div class="config-display-container">
+                    <div class="config-display" id="modalConfigOutput">
+                        <!-- Configuration will appear here -->
+                    </div>
+                    <button class="copy-config-btn" id="modalCopyBtn">
+                        <i class="far fa-copy"></i> Copy
+                    </button>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="modal-btn close" id="modalCloseBtn">
+                    <i class="fas fa-times"></i> Close
+                </button>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // Data konfigurasi - 21 Bug Addresses
+        const bugAddresses = [
+            "nontontv.vidio.com",
+            "go.appsflyer.com",
+            "support.zoom.us",
+            "vuclip.com",
+            "quiz.int.vidio.com",
+            "ruangguru.com",
+            "ava.game.naver.com",
+            "quiz.vidio.com",
+            "quiz.staging.vidio.com",
+            "img.email1.vidio.com",
+            "token-media-vidio-com.akamaized.net",
+            "support.vidio.com",
+            "api.midtrans.com",
+            "live.iflix.com",
+            "investor.fb.com",
+            "bakrie.ac.id",
+            "edu.ruangguru.com",
+            "df.game.naver.com",
+            "fikom.esaunggul.ac.id",
+            "ava.line.naver.com",
+            "cache.netflix.com",
+            "api24-normal.tiktokv.com"
+        ];
+        
+        // Data region dengan IP
+        const regions = {
+            'AU': { ip: '125.7.24.251', name: 'Australia', flag: '🇦🇺' },
+            'BR': { ip: '38.180.78.255', name: 'Brazil', flag: '🇧🇷' },
+            'CA': { ip: '140.238.158.238', name: 'Canada', flag: '🇨🇦' },
+            'HK': { ip: '156.230.12.71', name: 'Hong-Kong', flag: '🇭🇰' },
+            'ID': { ip: '43.218.77.16', name: 'Indonesia', flag: '🇮🇩' },
+            'IN': { ip: '216.10.243.159', name: 'India', flag: '🇮🇳' },
+            'JP': { ip: '45.76.198.248', name: 'Japan', flag: '🇯🇵' },
+            'KR': { ip: '52.141.25.42', name: 'Korea', flag: '🇰🇷' },
+            'PL': { ip: '54.37.235.201', name: 'Polandia', flag: '🇵🇱' },
+            'SG': { ip: '178.128.80.43', name: 'Singapore', flag: '🇸🇬' },
+            'US': { ip: '159.100.198.106', name: 'United States', flag: '🇺🇸' }
+        };
+        
+        // UUID tetap untuk semua konfigurasi
+        const FIXED_UUID = 'fc60147e-76b8-4bc5-b691-90b2da79e3d2';
+        
+        // Variabel global
+        let currentBug = bugAddresses[0];
+        let currentTLS = true;
+        let currentRegion = 'ID';
+        
+        // Fungsi untuk mendapatkan server address berdasarkan bug yang dipilih
+        function getServerAddress(bug) {
+            return `${bug}.fpvpntools.qzz.io`;
+        }
+        
+        // Inisialisasi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', function() {
+            // Isi dropdown bug addresses
+            const bugSelect = document.getElementById('bugSelect');
+            bugAddresses.forEach((bug, index) => {
+                const option = document.createElement('option');
+                option.value = bug;
+                option.textContent = bug;
+                if (index === 0) {
+                    option.selected = true;
+                    currentBug = bug;
+                }
+                bugSelect.appendChild(option);
+            });
+            
+            // Update preview server
+            updateServerPreview();
+            updateTLSStatus();
+            
+            // Event Listeners
+            document.getElementById('bugSelect').addEventListener('change', updateBug);
+            document.getElementById('tlsSwitch').addEventListener('change', toggleTLS);
+            document.getElementById('regionSelect').addEventListener('change', updateRegion);
+            document.getElementById('generateBtn').addEventListener('click', generateConfig);
+            document.getElementById('resetBtn').addEventListener('click', resetForm);
+            document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+            document.getElementById('modalCloseBtn').addEventListener('click', closeModal);
+            document.getElementById('modalCopyBtn').addEventListener('click', copyConfig);
+            
+            // Close modal dengan klik di luar modal
+            document.getElementById('modalOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        });
+        
+        // Fungsi untuk update bug yang dipilih
+        function updateBug() {
+            const bugSelect = document.getElementById('bugSelect');
+            currentBug = bugSelect.value;
+            updateServerPreview();
+        }
+        
+        // Fungsi untuk update preview server
+        function updateServerPreview() {
+            const serverPreview = document.getElementById('serverPreview');
+            const serverAddress = getServerAddress(currentBug);
+            serverPreview.textContent = serverAddress;
+        }
+        
+        // Fungsi untuk toggle TLS
+        function toggleTLS() {
+            const tlsSwitch = document.getElementById('tlsSwitch');
+            currentTLS = tlsSwitch.checked;
+            updateTLSStatus();
+        }
+        
+        // Fungsi untuk update status TLS
+        function updateTLSStatus() {
+            const tlsStatus = document.getElementById('tlsStatus');
+            if (currentTLS) {
+                tlsStatus.textContent = 'TLS Enabled (Port: 443)';
+            } else {
+                tlsStatus.textContent = 'TLS Disabled (Port: 80)';
+            }
+        }
+        
+        // Fungsi untuk update region
+        function updateRegion() {
+            const regionSelect = document.getElementById('regionSelect');
+            currentRegion = regionSelect.value;
+        }
+        
+        // Fungsi untuk generate konfigurasi
+        function generateConfig() {
+            // Get current values
+            const bug = document.getElementById('bugSelect').value;
+            const tls = document.getElementById('tlsSwitch').checked;
+            const region = document.getElementById('regionSelect').value;
+            
+            // Show loading overlay
+            const loadingOverlay = document.getElementById('loadingOverlay');
+            loadingOverlay.classList.add('active');
+            
+            // Simulate loading for 1.5 seconds
+            setTimeout(() => {
+                // Hide loading overlay
+                loadingOverlay.classList.remove('active');
+                
+                // Generate remark
+                const remark = `FPVPN-WILDCARD [${region}]`;
+                const serverAddress = getServerAddress(bug);
+                
+                // Generate config
+                const config = generateVlessConfig(bug, tls, region, remark, serverAddress);
+                
+                // Update modal content
+                document.getElementById('modalProtocol').textContent = 'VLESS';
+                document.getElementById('modalBug').textContent = bug;
+                document.getElementById('modalServer').textContent = serverAddress;
+                document.getElementById('modalPort').textContent = tls ? '443' : '80';
+                document.getElementById('modalSecurity').textContent = tls ? 'Enabled' : 'Disabled';
+                document.getElementById('modalRegion').textContent = `${regions[region].name} (${region})`;
+                document.getElementById('modalPath').textContent = `/${regions[region].ip}-443`;
+                document.getElementById('modalUUID').textContent = FIXED_UUID;
+                document.getElementById('modalConfigOutput').textContent = config;
+                
+                // Reset tombol copy
+                const copyBtn = document.getElementById('modalCopyBtn');
+                copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy';
+                copyBtn.classList.remove('copied');
+                
+                // Show modal
+                document.getElementById('modalOverlay').classList.add('active');
+                
+            }, 1500); // 1.5 seconds loading
+        }
+        
+        // Fungsi untuk generate config VLESS
+        function generateVlessConfig(bug, tls, region, remark, serverAddress) {
+            const port = tls ? 443 : 80;
+            const security = tls ? 'tls' : 'none';
+            const path = `/${regions[region].ip}-443`;
+            
+            // Encode untuk URL
+            const encodedPath = encodeURIComponent(path);
+            const encodedRemark = encodeURIComponent(remark);
+            
+            let config = `vless://${FIXED_UUID}@${bug}:${port}`;
+            config += `?type=ws`;
+            config += `&encryption=none`;
+            
+            if (tls) {
+                config += `&security=tls`;
+                config += `&sni=${serverAddress}`;
+            } else {
+                config += `&security=none`;
+            }
+            
+            config += `&host=${serverAddress}`;
+            config += `&path=${encodedPath}`;
+            config += `#${encodedRemark}`;
+            
+            return config;
+        }
+        
+        // Fungsi untuk reset form
+        function resetForm() {
+            // Reset bug selection to first option
+            document.getElementById('bugSelect').selectedIndex = 0;
+            document.getElementById('tlsSwitch').checked = true;
+            document.getElementById('regionSelect').value = 'ID';
+            
+            // Update values
+            currentBug = bugAddresses[0];
+            currentTLS = true;
+            currentRegion = 'ID';
+            
+            updateServerPreview();
+            toggleTLS();
+            
+            // Show notification
+            showNotification('Form has been reset to default values!', 'success');
+        }
+        
+        // Fungsi untuk show notification
+        function showNotification(message, type) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                background: ${type === 'success' ? 'var(--primary-green)' : 'var(--primary-blue)'};
+                color: white;
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+                z-index: 1001;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                animation: fadeIn 0.3s ease;
+            `;
+            
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+                ${message}
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.opacity = '0';
+                notification.style.transform = 'translateX(100px)';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+        
+        // Fungsi untuk close modal
+        function closeModal() {
+            document.getElementById('modalOverlay').classList.remove('active');
+        }
+        
+        // Fungsi untuk copy config
+        function copyConfig() {
+            const config = document.getElementById('modalConfigOutput').textContent;
+            const copyBtn = document.getElementById('modalCopyBtn');
+            
+            navigator.clipboard.writeText(config).then(() => {
+                // Ubah tombol copy menjadi "Copied"
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                copyBtn.classList.add('copied');
+                
+                // Show notification
+                showNotification('Configuration copied to clipboard!', 'success');
+                
+                // Kembalikan setelah 2 detik
+                setTimeout(() => {
+                    copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy Configuration';
+                    copyBtn.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy configuration: ' + err);
+                showNotification('Failed to copy configuration', 'error');
+            });
+        }
+    </script>
+</body>
+</html>
