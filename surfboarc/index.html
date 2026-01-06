@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Surfboard Converter - FPVPN</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+    --primary-blue: #2c7be5;
+    --secondary-blue: #1c5fb8;
+    --primary-green: #00d97e;
+    --secondary-green: #00b16a;
+    --error-red: #e74c3c;
+    --error-red-dark: #c0392b;
+    --error-light: #fde8e6;
+    --white: #ffffff;
+    --gray-light: #f8f9fa;
+    --gray-medium: #e9ecef;
+    --gray-dark: #6c757d;
+    --dark: #0a2540;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #f0f7ff 0%, #f0fff8 100%);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    flex: 1;
+}
+
+/* HEADER RESPONSIVE */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 15px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--primary-blue);
+    border-bottom: 5px solid var(--primary-green);
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--white);
+    box-shadow: 0 6px 12px rgba(44, 123, 229, 0.2);
+    flex-shrink: 0;
+}
+
+h1 {
+    color: var(--dark);
+    font-size: clamp(1.5rem, 4vw, 2.3rem);
+    margin-bottom: 5px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.3;
+}
+
+.subtitle {
+    color: var(--gray-dark);
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.5;
+}
+
+/* CARD RESPONSIVE */
+.card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: clamp(20px, 4vw, 30px);
+    box-shadow: var(--shadow);
+    margin-bottom: 25px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    border-left: 5px solid var(--primary-blue);
+    border-right: 5px solid var(--primary-green);
+    width: 100%;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+}
+
+.card-title {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: var(--dark);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid;
+    border-image: linear-gradient(to right, var(--primary-blue), var(--primary-green)) 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.card-title i {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+}
+
+/* FORM ELEMENTS RESPONSIVE */
+.form-group {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: clamp(0.95rem, 2vw, 1rem);
+}
+
+.input-with-icon {
+    position: relative;
+    width: 100%;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gray-dark);
+    font-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+textarea {
+    width: 100%;
+    padding: 14px 15px 14px 45px;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px;
+    font-family: 'Courier New', monospace;
+    font-size: clamp(13px, 2vw, 14px);
+    resize: vertical;
+    background: var(--white);
+    color: var(--dark);
+    transition: all 0.3s;
+    outline: none;
+    min-height: 140px;
+    max-height: 400px;
+    line-height: 1.5;
+}
+
+textarea:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.1);
+}
+
+/* BUTTONS RESPONSIVE */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    flex: 1;
+    min-width: 120px;
+    padding: clamp(14px, 3vw, 16px) clamp(18px, 3vw, 24px);
+    border: none;
+    border-radius: 8px;
+    font-size: clamp(1rem, 2vw, 1.1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    color: var(--white);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(90deg, var(--secondary-blue), var(--secondary-green));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--error-red);
+    border: 2px solid var(--error-red);
+    display: none;
+}
+
+.btn-secondary:hover {
+    background: var(--error-red);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(231, 76, 60, 0.2);
+}
+
+.btn-secondary.visible {
+    display: flex;
+}
+
+/* FOOTER RESPONSIVE */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--gray-medium);
+    color: var(--gray-dark);
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    line-height: 1.5;
+    width: 100%;
+}
+
+/* MODAL RESPONSIVE */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal {
+    background: var(--white);
+    border-radius: var(--radius);
+    width: 100%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-success {
+    border-top: 5px solid var(--primary-blue);
+    border-bottom: 5px solid var(--primary-green);
+}
+
+.modal-success .modal-header {
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+}
+
+.modal-error {
+    border-top: 5px solid var(--error-red);
+    border-bottom: 5px solid var(--error-red-dark);
+}
+
+.modal-error .modal-header {
+    background: linear-gradient(90deg, var(--error-red), var(--error-red-dark));
+}
+
+.modal-header {
+    padding: 20px;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.modal-title {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.close-modal {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--white);
+    font-size: 1.1rem;
+    transition: background 0.3s;
+    flex-shrink: 0;
+}
+
+.close-modal:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    max-height: calc(90vh - 150px);
+    flex: 1;
+}
+
+.config-display-container {
+    position: relative;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.config-display {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    word-break: break-all;
+    white-space: pre-wrap;
+    border: 2px solid var(--gray-medium);
+    max-height: 300px;
+    overflow-y: auto;
+    line-height: 1.4;
+    min-height: 150px;
+    width: 100%;
+}
+
+.copy-config-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: clamp(0.8rem, 2vw, 0.9rem);
+    transition: all 0.3s;
+    z-index: 10;
+    white-space: nowrap;
+}
+
+.copy-config-btn:hover {
+    background: linear-gradient(90deg, var(--secondary-blue), var(--secondary-green));
+}
+
+.copy-config-btn.copied {
+    background: var(--secondary-green);
+}
+
+.modal-footer {
+    padding: 15px 20px;
+    background: var(--gray-light);
+    display: flex;
+    gap: 12px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+}
+
+.modal-btn.download {
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    color: white;
+}
+
+.modal-btn.download:hover {
+    background: linear-gradient(90deg, var(--secondary-blue), var(--secondary-green));
+}
+
+.modal-btn.download.downloading {
+    background: var(--secondary-green);
+}
+
+.modal-btn.close {
+    background: var(--white);
+    color: var(--gray-dark);
+    border: 2px solid var(--gray-medium);
+}
+
+.modal-btn.close:hover {
+    background: var(--gray-medium);
+}
+
+/* DOWNLOAD MODAL RESPONSIVE - FIXED LAYOUT */
+.modal-download {
+    max-width: 500px;
+}
+
+.modal-download .modal-body {
+    padding: 20px;
+}
+
+.download-form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.download-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: clamp(0.95rem, 2vw, 1rem);
+}
+
+.download-input-wrapper {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.download-input-wrapper input {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid var(--gray-medium);
+    border-radius: 8px 0 0 8px;
+    font-size: clamp(0.95rem, 2vw, 1rem);
+    transition: all 0.3s;
+    border-right: none;
+}
+
+.download-input-wrapper input:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 3px rgba(44, 123, 229, 0.1);
+}
+
+.file-extension-display {
+    background: var(--gray-light);
+    border: 2px solid var(--gray-medium);
+    border-left: none;
+    border-radius: 0 8px 8px 0;
+    padding: 12px 15px;
+    color: var(--gray-dark);
+    font-weight: 600;
+    white-space: nowrap;
+    font-size: clamp(0.95rem, 2vw, 1rem);
+    display: flex;
+    align-items: center;
+    min-width: 60px;
+    justify-content: center;
+}
+
+.download-note {
+    background: var(--light-blue);
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: clamp(0.85rem, 2vw, 0.9rem);
+    color: var(--dark);
+    border-left: 4px solid var(--primary-blue);
+    line-height: 1.5;
+}
+
+.download-note i {
+    color: var(--primary-blue);
+    margin-right: 6px;
+}
+
+/* ERROR MESSAGE RESPONSIVE */
+.error-message {
+    background: var(--error-light);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid var(--error-red);
+    margin-top: 15px;
+}
+
+.error-icon {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    color: var(--error-red);
+    margin-bottom: 10px;
+}
+
+.error-text {
+    color: var(--error-red-dark);
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.error-details {
+    color: var(--dark);
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+/* LOADING OVERLAY RESPONSIVE */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.loading-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.loader {
+    width: clamp(50px, 10vw, 70px);
+    height: clamp(50px, 10vw, 70px);
+    border: 4px solid var(--light-blue);
+    border-top: 4px solid var(--primary-blue);
+    border-bottom: 4px solid var(--primary-green);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 15px;
+}
+
+.loading-text {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 600;
+    color: var(--dark);
+    background: linear-gradient(90deg, var(--primary-blue), var(--primary-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-align: center;
+}
+
+/* ANIMATIONS */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* MEDIA QUERIES FOR BETTER RESPONSIVE */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 5px;
+    }
+    
+    header {
+        margin-bottom: 20px;
+        padding: 15px 10px;
+    }
+    
+    .logo-container {
+        gap: 10px;
+    }
+    
+    .logo {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .card {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .btn {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    textarea {
+        padding: 12px 15px 12px 40px;
+        font-size: 13px;
+        min-height: 120px;
+    }
+    
+    .input-icon {
+        left: 12px;
+        font-size: 0.95rem;
+    }
+    
+    .modal-header {
+        padding: 15px;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .modal-footer {
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .modal-btn {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .config-display {
+        padding: 12px;
+        font-size: 0.85rem;
+        max-height: 250px;
+    }
+    
+    .copy-config-btn {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+        top: 8px;
+        right: 8px;
+    }
+    
+    /* FIXED: Download input tetap inline di mobile */
+    .download-input-wrapper {
+        flex-direction: row;
+    }
+    
+    .download-input-wrapper input {
+        border-radius: 8px 0 0 8px;
+        font-size: 14px;
+        min-width: 0;
+    }
+    
+    .file-extension-display {
+        border-radius: 0 8px 8px 0;
+        font-size: 14px;
+        padding: 12px 10px;
+        min-width: 50px;
+    }
+    
+    .download-note {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.4rem;
+    }
+    
+    .subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .card-title {
+        font-size: 1.1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .modal-title {
+        font-size: 1.1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .config-display {
+        font-size: 0.8rem;
+        padding: 10px;
+    }
+    
+    .error-message {
+        padding: 15px;
+    }
+    
+    .download-input-wrapper input {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    
+    .file-extension-display {
+        font-size: 13px;
+        padding: 10px 8px;
+        min-width: 45px;
+    }
+}
+
+/* HORIZONTAL ORIENTATION OPTIMIZATION */
+@media (min-width: 768px) and (max-height: 600px) {
+    .modal {
+        max-height: 85vh;
+    }
+    
+    .modal-body {
+        max-height: calc(85vh - 150px);
+    }
+    
+    .config-display {
+        max-height: 200px;
+    }
+}
+
+/* DARK MODE SUPPORT */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --dark: #f8f9fa;
+        --white: #1a1d23;
+        --gray-light: #2d323d;
+        --gray-medium: #3a3f4b;
+        --gray-dark: #adb5bd;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #1a1f2e 0%, #1e2a3a 100%);
+        color: var(--dark);
+    }
+    
+    textarea, .config-display, .download-input-wrapper input {
+        background: var(--gray-light);
+        color: var(--dark);
+        border-color: var(--gray-medium);
+    }
+    
+    .file-extension-display {
+        background: var(--gray-medium);
+        border-color: var(--gray-medium);
+        color: var(--gray-dark);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <header>
+        <div class="logo-container">
+            <div class="logo">FP</div>
+            <div>
+                <h1>Surfboard Converter</h1>
+                <p class="subtitle">Convert Vmess/Trojan to Surfboard configuration.</p>
+            </div>
+        </div>
+    </header>
+    
+    <div class="card">
+        <h2 class="card-title"><i class="fas fa-exchange-alt"></i> Converter</h2>
+        
+        <div class="form-group">
+            <label for="input"><i class="fas fa-code"></i> Input Vmess/Trojan URLs (one per line)</label>
+            <div class="input-with-icon">
+                <i class="fas fa-pencil-alt input-icon"></i>
+                <textarea id="input" placeholder="vmess://... or trojan://..."></textarea>
+            </div>
+        </div>
+        
+        <div class="action-buttons">
+            <button class="btn btn-primary" id="convertBtn">
+                <i class="fas fa-sync-alt"></i> Convert
+            </button>
+            <button class="btn btn-secondary" id="clearBtn">
+                <i class="fas fa-trash-alt"></i> Clear
+            </button>
+        </div>
+    </div>
+    
+    <footer>
+        <p><i class="fas fa-info-circle"></i> Surfboard Converter &copy; 2025 FPVPN.</p>
+        <p>All rights reserved.</p>
+    </footer>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loader"></div>
+    <div class="loading-text">Converting...</div>
+</div>
+
+<!-- Modal Popup Success -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal modal-success">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-check-circle"></i>
+                <span>Success</span>
+            </div>
+            <button class="close-modal" id="closeSuccessModalBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="config-display-container">
+                <div class="config-display" id="successConfigOutput">
+                    <!-- Surfboard config akan muncul di sini -->
+                </div>
+                <button class="copy-config-btn" id="successCopyBtn">
+                    <i class="far fa-copy"></i> Copy
+                </button>
+            </div>
+            
+            <div style="margin-top: 15px; padding: 12px; background: var(--light-blue); border-radius: 8px; border-left: 4px solid var(--primary-blue);">
+                <p style="margin: 0; color: var(--dark); font-size: 0.9rem; line-height: 1.5;">
+                    <i class="fas fa-lightbulb"></i> <strong>Tips:</strong> Conversion successful! Copy the Surfboard configuration or download as .conf file.
+                </p>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="modal-btn download" id="successDownloadBtn">
+                <i class="fas fa-download"></i> Download .conf
+            </button>
+            <button class="modal-btn close" id="successCloseBtn">
+                <i class="fas fa-times"></i> Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Download Settings Modal -->
+<div class="modal-overlay" id="downloadModal">
+    <div class="modal modal-success modal-download">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-download"></i>
+                <span>Download Settings</span>
+            </div>
+            <button class="close-modal" id="closeDownloadModalBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="download-form-group">
+                <label for="filenameInput"><i class="fas fa-file-alt"></i> File Name</label>
+                <div class="download-input-wrapper">
+                    <input type="text" id="filenameInput" placeholder="surfboard-config" value="surfboard-config">
+                    <div class="file-extension-display">.conf</div>
+                </div>
+                <small style="color: var(--gray-dark); margin-top: 5px; display: block; font-size: 0.85rem;">File will be downloaded as: <span id="filenamePreview">surfboard-config.conf</span></small>
+            </div>
+            
+            <div class="download-note">
+                <p><i class="fas fa-info-circle"></i> The file will contain the complete Surfboard configuration including proxy entries, proxy group, and rules.</p>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="modal-btn download" id="confirmDownloadBtn">
+                <i class="fas fa-download"></i> Download Now
+            </button>
+            <button class="modal-btn close" id="cancelDownloadBtn">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Popup Error -->
+<div class="modal-overlay" id="errorModal">
+    <div class="modal modal-error">
+        <div class="modal-header">
+            <div class="modal-title">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Failed</span>
+            </div>
+            <button class="close-modal" id="closeErrorModalBtn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="modal-body">
+            <div class="error-message">
+                <div class="error-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="error-text" id="errorText">
+                    Invalid input!
+                </div>
+                <div class="error-details" id="errorDetails">
+                    Unrecognized configuration format. Please enter valid VMESS/Trojan URLs.
+                </div>
+            </div>
+            
+            <div style="margin-top: 15px; padding: 12px; background: var(--gray-light); border-radius: 8px; border-left: 4px solid var(--gray-dark);">
+                <p style="margin: 0; color: var(--dark); font-size: 0.85rem; line-height: 1.5;">
+                    <i class="fas fa-question-circle"></i> <strong>Valid formats:</strong><br>
+                    • vmess://(base64 encoded JSON)<br>
+                    • trojan://password@domain:port?type=ws&security=tls&host=...&sni=...#Name
+                </p>
+            </div>
+        </div>
+        
+        <div class="modal-footer">
+            <button class="modal-btn close" id="errorCloseBtn">
+                <i class="fas fa-times"></i> Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Auto-resize textarea
+function autoResize(el){ 
+    el.style.height='auto'; 
+    el.style.height=(el.scrollHeight)+'px'; 
+}
+
+// Clear input
+function clearAll(){ 
+    document.getElementById("input").value=''; 
+    updateClearButton();
+}
+
+// Update visibility of clear button
+function updateClearButton() {
+    const input = document.getElementById("input").value.trim();
+    const clearBtn = document.getElementById("clearBtn");
+    
+    if (input) {
+        clearBtn.classList.add("visible");
+    } else {
+        clearBtn.classList.remove("visible");
+    }
+}
+
+// Validate input - hanya VMESS dan Trojan
+function validateInput(input) {
+    if (!input.trim()) {
+        return { 
+            valid: false, 
+            message: "Blank input!", 
+            details: "Enter VMESS/Trojan configuration first." 
+        };
+    }
+    
+    const lines = input.split(/\r?\n/).filter(l => l.trim() !== "");
+    let validCount = 0;
+    let invalidLines = [];
+    let unsupportedProtocols = [];
+    
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (line) {
+            if (line.startsWith("vmess://") || line.startsWith("trojan://")) {
+                validCount++;
+            } else if (line.startsWith("vless://")) {
+                unsupportedProtocols.push("VLESS (not supported)");
+            } else {
+                invalidLines.push(i + 1);
+            }
+        }
+    }
+    
+    if (validCount === 0) {
+        let errorMsg = "No valid VMESS/Trojan configuration found.";
+        if (unsupportedProtocols.length > 0) {
+            errorMsg += " Unsupported: " + unsupportedProtocols.join(", ");
+        }
+        if (invalidLines.length > 0) {
+            errorMsg += " Invalid lines: " + invalidLines.join(", ");
+        }
+        return { 
+            valid: false, 
+            message: "Invalid input!", 
+            details: errorMsg 
+        };
+    }
+    
+    return { valid: true };
+}
+
+// Parser untuk VMESS dan Trojan - FIXED TLS DETECTION
+function parseV2Ray(url) {
+    try {
+        if (url.startsWith("vmess://")) {
+            const vmessData = atob(url.replace("vmess://", ""));
+            const j = JSON.parse(vmessData);
+            
+            // Debug logging untuk VMESS
+            console.log("VMESS Parsed:", j);
+            
+            return {
+                type: "vmess",
+                uuid: j.id,
+                server: j.add || j.host,
+                port: parseInt(j.port),
+                name: j.ps || "Vmess Server",
+                path: j.path || "/",
+                tls: j.tls === "tls",
+                host: j.host || j.add,
+                sni: j.sni || j.host || j.add,
+                network: j.net === "ws" ? "ws" : "tcp",
+                alterId: j.aid || 0
+            };
+        } 
+        else if (url.startsWith("trojan://")) {
+            const [_, rest] = url.split("trojan://");
+            const [password, after] = rest.split("@");
+            const [server, tail] = after.split(":");
+            const [port, paramsAndName] = tail.split("?");
+            const [params, name] = paramsAndName.split("#");
+            const sp = new URLSearchParams(params);
+            
+            // Debug logging untuk Trojan
+            console.log("Trojan Params:", {
+                security: sp.get("security"),
+                sni: sp.get("sni"),
+                host: sp.get("host"),
+                type: sp.get("type")
+            });
+            
+            // FIX: Deteksi TLS yang benar untuk Trojan
+            // Trojan bisa menggunakan "security=tls" atau "tls=true"
+            const security = sp.get("security");
+            const tlsParam = sp.get("tls");
+            const hasTLS = security === "tls" || tlsParam === "true" || tlsParam === "1";
+            
+            return {
+                type: "trojan",
+                password: password,
+                server: server,
+                port: parseInt(port),
+                name: decodeURIComponent(name || "Trojan Server"),
+                path: sp.get("path") || "/",
+                host: sp.get("host") || server,
+                sni: sp.get("sni") || sp.get("host") || server,
+                network: sp.get("type") === "ws" ? "ws" : "tcp",
+                tls: hasTLS  // FIXED: Gunakan deteksi TLS yang benar
+            };
+        } 
+        else {
+            return null;
+        }
+    } catch (e) {
+        console.error("Parse error:", e);
+        return null;
+    }
+}
+
+// Generator untuk Surfboard VMESS - FIXED TLS OUTPUT
+function toSurfboardVmess(d) {
+    // Sanitize name untuk digunakan sebagai identifier
+    const safeName = d.name.replace(/[^a-zA-Z0-9]/g, '').substring(0, 20) || "Vmess";
+    const identifier = safeName || "VmessProxy";
+    
+    let config = `${identifier} = vmess, ${d.server}, ${d.port}, username=${d.uuid}`;
+    config += `, udp-relay=false`;
+    config += `, ws=${d.network === "ws" ? "true" : "false"}`;
+    config += `, tls=${d.tls ? "true" : "false"}`;  // FIXED: Gunakan d.tls langsung
+    
+    if (d.network === "ws") {
+        config += `, ws-path=${d.path || "/"}`;
+        config += `, ws-headers=Host:${d.host || d.server}`;
+    }
+    
+    config += `, skip-cert-verify=true`;
+    
+    if (d.tls && d.sni) {
+        config += `, sni=${d.sni}`;
+    }
+    
+    config += `, vmess-aead=true`;
+    
+    return config;
+}
+
+// Generator untuk Surfboard Trojan - FIXED TLS OUTPUT
+function toSurfboardTrojan(d) {
+    // Sanitize name untuk digunakan sebagai identifier
+    const safeName = d.name.replace(/[^a-zA-Z0-9]/g, '').substring(0, 20) || "Trojan";
+    const identifier = safeName || "TrojanProxy";
+    
+    let config = `${identifier} = trojan, ${d.server}, ${d.port}, password=${d.password}`;
+    config += `, udp-relay=false`;
+    config += `, ws=${d.network === "ws" ? "true" : "false"}`;
+    config += `, tls=${d.tls ? "true" : "false"}`;  // FIXED: Gunakan d.tls langsung
+    
+    if (d.network === "ws") {
+        config += `, ws-path=${d.path || "/"}`;
+        config += `, ws-headers=Host:${d.host || d.server}`;
+    }
+    
+    config += `, skip-cert-verify=true`;
+    
+    if (d.tls && d.sni) {
+        config += `, sni=${d.sni}`;
+    }
+    
+    return config;
+}
+
+// Generate complete Surfboard config
+function generateSurfboardConfig(parsedConfigs) {
+    let proxyLines = [];
+    let proxyNames = [];
+    
+    // Generate proxy entries
+    parsedConfigs.forEach((config, index) => {
+        if (config.type === "vmess") {
+            const proxyLine = toSurfboardVmess(config);
+            const proxyName = proxyLine.split(" = ")[0];
+            proxyLines.push(proxyLine);
+            proxyNames.push(proxyName);
+        } else if (config.type === "trojan") {
+            const proxyLine = toSurfboardTrojan(config);
+            const proxyName = proxyLine.split(" = ")[0];
+            proxyLines.push(proxyLine);
+            proxyNames.push(proxyName);
+        }
+    });
+    
+    // Build complete config
+    let output = "[Proxy]\n";
+    output += proxyLines.join("\n");
+    output += "\n\n[Proxy Group]\n";
+    output += `MainGroup = select, ${proxyNames.join(", ")}, DIRECT, REJECT`;
+    output += "\n\n[Rule]\n";
+    output += "GEOIP,US,REJECT\n\n";
+    output += "PROTOCOL,QUIC,REJECT\n\n";
+    output += "FINAL,MainGroup";
+    
+    return output;
+}
+
+// Global variable untuk menyimpan config yang sudah di-generate
+let currentSurfboardConfig = "";
+
+// Convert function
+function convert() {
+    const raw = document.getElementById("input").value.trim();
+    
+    // Validasi input
+    const validation = validateInput(raw);
+    if (!validation.valid) {
+        showErrorModal(validation.message, validation.details);
+        return;
+    }
+    
+    // Show loading overlay
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    loadingOverlay.classList.add("active");
+    
+    // Simulate loading for 1 second
+    setTimeout(() => {
+        // Hide loading overlay
+        loadingOverlay.classList.remove("active");
+        
+        const lines = raw.split(/\r?\n/).filter(l => l.trim() !== "");
+        let parsedConfigs = [];
+        
+        for (let line of lines) {
+            const parsed = parseV2Ray(line.trim());
+            if (parsed && (parsed.type === "vmess" || parsed.type === "trojan")) {
+                // Debug output untuk verifikasi
+                console.log(`Parsed ${parsed.type}:`, {
+                    server: parsed.server,
+                    tls: parsed.tls,
+                    sni: parsed.sni,
+                    port: parsed.port
+                });
+                parsedConfigs.push(parsed);
+            }
+        }
+        
+        // Cek apakah ada config yang valid
+        if (parsedConfigs.length > 0) {
+            // Generate Surfboard config
+            currentSurfboardConfig = generateSurfboardConfig(parsedConfigs);
+            
+            // Update modal content
+            document.getElementById("successConfigOutput").textContent = currentSurfboardConfig;
+            
+            // Reset buttons
+            const copyBtn = document.getElementById("successCopyBtn");
+            copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy';
+            copyBtn.classList.remove("copied");
+            
+            const downloadBtn = document.getElementById("successDownloadBtn");
+            downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download .conf';
+            downloadBtn.classList.remove("downloading");
+            
+            // Show success modal
+            document.getElementById("successModal").classList.add("active");
+        } else {
+            // Tampilkan modal error
+            showErrorModal(
+                "Conversion failed", 
+                "No valid VMESS/Trojan configurations found. Please check your input."
+            );
+        }
+        
+    }, 1000); // 1 second loading
+}
+
+// Fungsi untuk menampilkan modal error
+function showErrorModal(title, details) {
+    document.getElementById("errorText").textContent = title;
+    document.getElementById("errorDetails").textContent = details;
+    document.getElementById("errorModal").classList.add("active");
+}
+
+// Copy function
+function copySuccessResult() {
+    const config = document.getElementById("successConfigOutput").textContent;
+    const copyBtn = document.getElementById("successCopyBtn");
+    
+    if (!config || config.trim() === "") { 
+        return; 
+    }
+    
+    navigator.clipboard.writeText(config).then(() => {
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+        copyBtn.classList.add("copied");
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy';
+            copyBtn.classList.remove("copied");
+        }, 2000);
+    }).catch(err => {
+        // Fallback
+        let temp = document.createElement("textarea");
+        temp.value = config;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand("copy");
+        document.body.removeChild(temp);
+        
+        copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+        copyBtn.classList.add("copied");
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = '<i class="far fa-copy"></i> Copy';
+            copyBtn.classList.remove("copied");
+        }, 2000);
+    });
+}
+
+// Show download settings modal
+function showDownloadModal() {
+    document.getElementById("downloadModal").classList.add("active");
+    updateFilenamePreview();
+}
+
+// Update filename preview
+function updateFilenamePreview() {
+    const filenameInput = document.getElementById("filenameInput");
+    const preview = document.getElementById("filenamePreview");
+    let filename = filenameInput.value.trim();
+    
+    if (!filename) {
+        filename = "surfboard-config";
+        filenameInput.value = filename;
+    }
+    
+    // Remove .conf if already added
+    if (filename.endsWith('.conf')) {
+        filename = filename.substring(0, filename.length - 5);
+        filenameInput.value = filename;
+    }
+    
+    preview.textContent = filename + ".conf";
+}
+
+// Perform download
+function performDownload() {
+    const filenameInput = document.getElementById("filenameInput");
+    let filename = filenameInput.value.trim();
+    
+    if (!filename) {
+        filename = "surfboard-config";
+    }
+    
+    // Ensure .conf extension
+    if (!filename.endsWith('.conf')) {
+        filename += '.conf';
+    }
+    
+    const config = currentSurfboardConfig;
+    if (!config || config.trim() === "") { 
+        return; 
+    }
+    
+    const blob = new Blob([config], {type: "text/plain"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    
+    // Close download modal
+    closeDownloadModal();
+    
+    // Close success modal
+    closeSuccessModal();
+}
+
+// Close modal functions
+function closeSuccessModal() {
+    document.getElementById("successModal").classList.remove("active");
+}
+
+function closeErrorModal() {
+    document.getElementById("errorModal").classList.remove("active");
+}
+
+function closeDownloadModal() {
+    document.getElementById("downloadModal").classList.remove("active");
+}
+
+// Event Listeners
+document.addEventListener("DOMContentLoaded", function() {
+    // Auto-resize textarea
+    document.getElementById("input").addEventListener('input', e => {
+        autoResize(e.target);
+        updateClearButton();
+    });
+    
+    // Convert button
+    document.getElementById("convertBtn").addEventListener("click", convert);
+    
+    // Clear button
+    document.getElementById("clearBtn").addEventListener("click", clearAll);
+    
+    // Modal success buttons
+    document.getElementById("successCopyBtn").addEventListener("click", copySuccessResult);
+    document.getElementById("successDownloadBtn").addEventListener("click", showDownloadModal);
+    document.getElementById("closeSuccessModalBtn").addEventListener("click", closeSuccessModal);
+    document.getElementById("successCloseBtn").addEventListener("click", closeSuccessModal);
+    
+    // Download modal buttons
+    document.getElementById("filenameInput").addEventListener("input", updateFilenamePreview);
+    document.getElementById("confirmDownloadBtn").addEventListener("click", performDownload);
+    document.getElementById("cancelDownloadBtn").addEventListener("click", closeDownloadModal);
+    document.getElementById("closeDownloadModalBtn").addEventListener("click", closeDownloadModal);
+    
+    // Modal error buttons
+    document.getElementById("closeErrorModalBtn").addEventListener("click", closeErrorModal);
+    document.getElementById("errorCloseBtn").addEventListener("click", closeErrorModal);
+    
+    // Close modal when clicking outside
+    document.getElementById("successModal").addEventListener("click", function(e) {
+        if (e.target === this) {
+            closeSuccessModal();
+        }
+    });
+    
+    document.getElementById("errorModal").addEventListener("click", function(e) {
+        if (e.target === this) {
+            closeErrorModal();
+        }
+    });
+    
+    document.getElementById("downloadModal").addEventListener("click", function(e) {
+        if (e.target === this) {
+            closeDownloadModal();
+        }
+    });
+    
+    // Convert on Ctrl+Enter
+    document.getElementById("input").addEventListener("keydown", function(e) {
+        if (e.ctrlKey && e.key === 'Enter') {
+            convert();
+        }
+    });
+    
+    // Initialize clear button visibility
+    updateClearButton();
+    
+    // Debug: Auto-fill dengan contoh untuk testing
+    const debugMode = false; // Set true untuk testing
+    if (debugMode && window.location.hostname === 'localhost') {
+        document.getElementById("input").value = `trojan://86768774-70b2-4c15-80c3-02066fb1e3b6@api24-normal.tiktokv.com:443?path=%2F43.218.77.16-443&security=tls&host=3.savobew970.workers.dev&type=ws&sni=3.savobew970.workers.dev#FpTrojan
+vmess://eyJhZGQiOiJhcGkyNC1ub3JtYWwudGlrdG9rdi5jb20iLCJhaWQiOiIwIiwiYWxwbiI6IiIsImZwIjoiIiwiaG9zdCI6InYycmF5LmNvZGVmeWluYy5jb20iLCJpZCI6IjJjOTgxMTY0LTliOTMtNGJjYS05NGZmLWI3OGQzZjg0OThkNyIsIm5ldCI6IndzIiwicGF0aCI6Ii92bWVzc3dzIiwicG9ydCI6IjQ0MyIsInBzIjoiRnBWbWVzcyIsInNjeSI6ImF1dG8iLCJzbmkiOiJ2MnJheS5jb2RlZnlpbmMuY29tIiwidGxzIjoidGxzIiwidHlwZSI6Ii0tLSIsInYiOiIyIn0=`;
+        autoResize(document.getElementById("input"));
+        updateClearButton();
+    }
+});
+</script>
+</body>
+</html>
